@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="grid min-h-[75vh] grid-cols-12 gap-8 bg-gradient-to-r from-primary-500/10 to-primary-500/0 px-8 py-12 md:px-12 lg:px-20">
       <div className="col-span-6 flex flex-col justify-center gap-4">
@@ -7,10 +11,16 @@ const Hero = () => {
           contractors come to you
         </p>
         <div className="space-x-8">
-          <button className="rounded-lg bg-primary-500 py-1 px-4 font-semibold text-white transition hover:bg-primary-600">
+          <button
+            className="rounded-lg bg-primary-500 py-1 px-4 font-semibold text-white transition hover:bg-primary-600"
+            onClick={() => navigate('/post-job')}
+          >
             Post a Job
           </button>
-          <button className="rounded-lg bg-primary-500 py-1 px-4 font-semibold text-white transition hover:bg-primary-600">
+          <button
+            className="rounded-lg bg-primary-500 py-1 px-4 font-semibold text-white transition hover:bg-primary-600"
+            onClick={() => navigate('/jobs')}
+          >
             Find a Job
           </button>
         </div>
