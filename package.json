@@ -5,7 +5,7 @@
     "heroku-postbuild": "npm run install-client && npm run build",
     "server": "nodemon server/app.js",
     "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "start": "npm i concurrently && concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
   },
   "engines": {
     "node": "16.13.2"
