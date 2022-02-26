@@ -12,7 +12,14 @@ const initialValues = {
   bio: '',
 };
 
-const validationSchema = yup.object().shape({});
+const validationSchema = yup.object().shape({
+  profilePic: yup.mixed(),
+  name: yup.string().required('Name is required'),
+  company: yup.string(),
+  companyLicense: yup.string(),
+  companyWebsiteLink: yup.string().url('Company website link is not valid'),
+  bio: yup.string(),
+});
 
 const ProfileForm = () => {
   const onSubmit = (values) => {
@@ -138,9 +145,9 @@ const ProfileForm = () => {
             className="mt-0.5 w-full flex-1 resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
             {...formik.getFieldProps('bio')}
           />
-          {formik.touched.name && formik.errors.name && (
+          {formik.touched.bio && formik.errors.bio && (
             <div className="mt-1 text-xs text-red-600">
-              * {formik.errors.name}
+              * {formik.errors.bio}
             </div>
           )}
         </div>
