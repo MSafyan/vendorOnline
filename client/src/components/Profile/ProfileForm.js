@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { CameraIcon } from '@heroicons/react/outline';
+import Rating from '../Utils/Rating';
 
 const initialValues = {
   profilePic: null,
@@ -44,7 +45,10 @@ const ProfileForm = () => {
         {/* details */}
         <div>
           <h4 className="text-xl font-medium">Name</h4>
-          <div className="text-xs font-medium">Reviews</div>
+          <div className="flex items-center gap-1 text-xs font-medium">
+            Reviews
+            <Rating reviews={[{ rating: 3 }]} showLength />
+          </div>
           <p className="text-xs font-medium">Member since Mar 2021</p>
         </div>
       </div>
