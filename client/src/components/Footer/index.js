@@ -31,23 +31,17 @@ const Footer = () => {
           <nav className="flex justify-center">
             <ul className="text-lg font-bold text-gray-800">
               <li>
-                <Link to="/" className="mt-1 border-b-[3px] pb-0.5 transition">
+                <Link to="/" className="mt-1 pb-0.5 transition">
                   Home
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/jobs"
-                  className="mt-1 border-b-[3px] pb-0.5 transition"
-                >
+                <Link to="/jobs" className="mt-1 pb-0.5 transition">
                   Find Jobs
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/post-job"
-                  className="mt-1 border-b-[3px] pb-0.5 transition"
-                >
+                <Link to="/post-job" className="mt-1 pb-0.5 transition">
                   Post Jobs
                 </Link>
               </li>
