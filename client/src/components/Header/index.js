@@ -1,26 +1,31 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { UserIcon } from "@heroicons/react/solid";
-import useActivePage from "../../hooks/useActivePage";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { UserIcon } from '@heroicons/react/solid';
+import useActivePage from '../../hooks/useActivePage';
+import LoginModal from './LoginModal';
+import SignupModal from './SignupModal';
+import useLoggedIn from '../../hooks/useLoggedIn';
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, logout } = useLoggedIn();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const { activePage } = useActivePage();
 
   return (
-    <header className="w-full py-3 px-8 md:px-12 lg:px-20 border-b-2 border-primary-600">
-      <div className="grid grid-cols-3 w-full">
+    <header className="w-full border-b-2 border-primary-600 py-3 px-8 md:px-12 lg:px-20">
+      <div className="grid w-full grid-cols-3">
         <nav className="flex items-center">
-          <ul className="flex gap-10 lg:gap-16 text-sm">
+          <ul className="flex gap-10 text-sm lg:gap-16">
             <li>
               <Link
                 to="/"
                 className={`
-                border-b-[3px] pb-0.5 mt-1 transition
+                mt-1 border-b-[3px] pb-0.5 transition
               ${
-                activePage === "home" || !activePage
-                  ? "border-primary-500"
-                  : "border-transparent"
+                activePage === 'home' || !activePage
+                  ? 'border-primary-500'
+                  : 'border-transparent'
               }`}
               >
                 Home
@@ -30,11 +35,11 @@ const Header = () => {
               <Link
                 to="/post-job"
                 className={`
-                border-b-[3px] pb-0.5 mt-1 transition
+                mt-1 border-b-[3px] pb-0.5 transition
               ${
-                activePage === "post-job"
-                  ? "border-primary-500"
-                  : "border-transparent"
+                activePage === 'post-job'
+                  ? 'border-primary-500'
+                  : 'border-transparent'
               }`}
               >
                 Post Jobs
@@ -44,11 +49,11 @@ const Header = () => {
               <Link
                 to="/jobs"
                 className={`
-                border-b-[3px] pb-0.5 mt-1 transition
+                mt-1 border-b-[3px] pb-0.5 transition
               ${
-                activePage === "jobs"
-                  ? "border-primary-500"
-                  : "border-transparent"
+                activePage === 'jobs'
+                  ? 'border-primary-500'
+                  : 'border-transparent'
               }`}
               >
                 Find Jobs
@@ -58,40 +63,62 @@ const Header = () => {
         </nav>
         <Link
           to="/"
-          className="text-center font-semibold text-primary-500 text-4xl"
+          className="text-center text-4xl font-semibold text-primary-500"
         >
           Gigwaiting
         </Link>
-        <div className="flex justify-end items-center text-sm gap-8">
+        <div className="flex items-center justify-end text-sm">
           {isLoggedIn ? (
             <>
-              <Link to="/profile" className="flex gap-1 items-center">
-                <UserIcon className="w-6 h-6 text-primary-500" />
+              <Link to="/profile" className="flex items-center gap-1">
+                <UserIcon className="h-6 w-6 text-primary-500" />
                 Mike
               </Link>
-              <div>
+              <div className="ml-8">
                 <button
-                  className="border border-primary-500 text-primary-500 font-semibold hover:text-primary-600 hover:border-primary-600 py-1.5 px-6 rounded-xl transition"
-                  onClick={() => {
-                    setIsLoggedIn(false);
-                  }}
+                  className="rounded-xl border border-primary-500 py-1.5 px-6 font-semibold text-primary-500 transition hover:border-primary-600 hover:text-primary-600"
+                  onClick={logout}
                 >
                   Sign out
                 </button>
               </div>
             </>
           ) : (
-            <button
-              className="bg-primary-500 hover:bg-primary-600 text-white font-semibold py-1.5 px-8 rounded-xl transition"
-              onClick={() => {
-                setIsLoggedIn(true);
-              }}
-            >
-              Sign in
-            </button>
+            <>
+              <button
+                className="rounded-xl bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600"
+                onClick={() => {
+                  setIsLoginModalOpen(true);
+                }}
+              >
+                Sign in
+              </button>
+              <button
+                className="ml-4 rounded-xl border border-primary-500 py-1.5 px-8 font-semibold text-primary-500 transition hover:border-primary-600 hover:text-primary-600"
+                onClick={() => {
+                  setIsSignupModalOpen(true);
+                }}
+              >
+                Sign up
+              </button>
+            </>
           )}
-        </div>{" "}
+        </div>
       </div>
+      <LoginModal
+        isOpen={isLoginModalOpen}
+        setIsOpen={setIsLoginModalOpen}
+        openSignUp={() => {
+          setIsSignupModalOpen(true);
+        }}
+      />
+      <SignupModal
+        isOpen={isSignupModalOpen}
+        setIsOpen={setIsSignupModalOpen}
+        openLogin={() => {
+          setIsLoginModalOpen(true);
+        }}
+      />
     </header>
   );
 };
