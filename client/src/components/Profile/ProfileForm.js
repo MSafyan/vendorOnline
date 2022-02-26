@@ -132,7 +132,7 @@ const ProfileForm = () => {
             id="bio"
             placeholder="Write your bio"
             className="mt-0.5 w-full flex-1 resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
-            {...formik.getFieldProps('name')}
+            {...formik.getFieldProps('bio')}
           />
           {formik.touched.name && formik.errors.name && (
             <div className="mt-1 text-xs text-red-600">
