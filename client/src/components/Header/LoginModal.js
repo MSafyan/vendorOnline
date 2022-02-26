@@ -76,7 +76,7 @@ const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
                   id="userId/email"
                   type="email"
                   placeholder="Email"
-                  className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+                  className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
                   {...formik.getFieldProps('userId')}
                 />
                 {formik.touched.userId && formik.errors.userId && (
@@ -94,7 +94,7 @@ const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+                  className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
                   {...formik.getFieldProps('password')}
                 />
                 {formik.touched.password && formik.errors.password && (

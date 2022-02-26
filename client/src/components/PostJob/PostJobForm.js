@@ -54,7 +54,7 @@ const PostJobForm = () => {
             id="title"
             type="text"
             placeholder="Add title"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('title')}
           />
           {formik.touched.title && formik.errors.title && (
@@ -72,7 +72,7 @@ const PostJobForm = () => {
             id="company"
             type="text"
             placeholder="Company Name"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('company')}
           />
           {formik.touched.company && formik.errors.company && (
@@ -90,7 +90,7 @@ const PostJobForm = () => {
             id="location"
             type="text"
             placeholder="Eg San Francisco, CA"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('location')}
           />
           {formik.touched.location && formik.errors.location && (
@@ -109,7 +109,7 @@ const PostJobForm = () => {
             type="number"
             min={0.01}
             placeholder="$0.00"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('budget')}
           />
           {formik.touched.budget && formik.errors.budget && (
@@ -127,7 +127,7 @@ const PostJobForm = () => {
             id="description"
             placeholder="Type the description here"
             rows={6}
-            className="mt-0.5 w-full resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('description')}
           />
           {formik.touched.description && formik.errors.description && (

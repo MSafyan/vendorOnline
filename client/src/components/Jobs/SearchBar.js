@@ -7,7 +7,7 @@ const SearchBar = () => {
         <div className="relative flex-1">
           <input
             type="text"
-            className="w-full rounded-lg border-gray-400/80 py-2 pl-4 pr-16 text-sm focus:border-gray-400/80 focus:outline-none focus:ring-primary-500"
+            className="w-full rounded-lg border-gray-400/80 py-2 pl-4 pr-16 text-sm focus:border-primary-500 focus:ring-primary-500"
             placeholder="City or Zip code"
           />
           <button className="absolute top-1/2 right-0 mr-3 -translate-y-1/2 focus:border-none">

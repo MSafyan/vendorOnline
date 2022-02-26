@@ -32,6 +32,8 @@ const ProfileForm = () => {
     onSubmit,
   });
 
+  console.log(formik.values);
+
   return (
     <form
       onSubmit={formik.handleSubmit}
@@ -42,11 +44,19 @@ const ProfileForm = () => {
         <div className="relative flex h-28 w-28 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full border-2 border-gray-700 text-gray-500">
           <CameraIcon className="h-12 w-12" />
           <span className="text-xs font-bold">Add Photo</span>
+          {formik.values.profilePic && (
+            <img
+              src={URL.createObjectURL(formik.values.profilePic)}
+              alt="profile"
+              className="absolute inset-0 h-full w-full bg-white object-cover"
+            />
+          )}
           <input
             type="file"
-            name="profilePic"
-            id=""
             className="absolute inset-0 cursor-pointer opacity-0"
+            onChange={(e) => {
+              formik.setFieldValue('profilePic', e.target.files[0]);
+            }}
           />
         </div>
         {/* details */}
@@ -69,7 +79,7 @@ const ProfileForm = () => {
             id="name"
             type="text"
             placeholder="Write your name"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('name')}
           />
           {formik.touched.name && formik.errors.name && (
@@ -87,7 +97,7 @@ const ProfileForm = () => {
             id="company"
             type="text"
             placeholder="Company Name"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('company')}
           />
           {formik.touched.company && formik.errors.company && (
@@ -105,7 +115,7 @@ const ProfileForm = () => {
             id="companyLicense"
             type="text"
             placeholder="License number"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('companyLicense')}
           />
           {formik.touched.companyLicense && formik.errors.companyLicense && (
@@ -123,7 +133,7 @@ const ProfileForm = () => {
             id="companyWebsiteLink"
             type="url"
             placeholder="Website Link"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('companyWebsiteLink')}
           />
           {formik.touched.companyWebsiteLink &&

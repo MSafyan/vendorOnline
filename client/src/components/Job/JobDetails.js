@@ -3,8 +3,10 @@ import currencyFormatter from '../../utils/currencyFormatter';
 import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import firstCharacter from '../../utils/firstCharacter';
+import useLoggedIn from '../../hooks/useLoggedIn';
 
 const JobDetails = ({ job }) => {
+  const { isLoggedIn } = useLoggedIn();
   const navigate = useNavigate();
 
   return (
@@ -28,8 +30,10 @@ const JobDetails = ({ job }) => {
         <h5 className="mt-3 text-xs text-gray-600">{job.company}</h5>
 
         <button
-          className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600"
+          className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:opacity-50 disabled:hover:bg-primary-500"
           onClick={() => navigate(`/chats?cu=${job.poster.id}`)}
+          disabled={!isLoggedIn}
+          title={!isLoggedIn ? 'You must be logged in to chat' : ''}
         >
           Message
         </button>
