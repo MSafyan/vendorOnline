@@ -144,7 +144,7 @@ const PostJobForm = () => {
           setSelected={(value) => formik.setFieldValue('category', value)}
         />
         <h4 className="mt-4 font-medium">Attached Images</h4>
-        <div className="mt-6 flex gap-2">
+        <div className="mt-6 flex flex-wrap gap-2">
           {[...new Array(MAX_IMAGES)].map((_, index) => (
             <div
               key={index}
