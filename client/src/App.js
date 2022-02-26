@@ -5,7 +5,7 @@ import Router from './routes';
 
 function App() {
   return (
-    <div>
+    <div className="flex min-h-screen flex-col">
       <BrowserRouter>
         <Header />
         <Router />

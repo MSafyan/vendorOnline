@@ -13,7 +13,7 @@ const Header = () => {
   const { activePage } = useActivePage();
 
   return (
-    <header className="w-full border-b-2 border-primary-600 py-3 px-8 md:px-12 lg:px-20">
+    <header className="w-full border-b-2 border-primary-600 py-3 px-8 shadow-md shadow-primary-300/10 md:px-12 lg:px-20">
       <div className="grid w-full grid-cols-3">
         <nav className="flex items-center">
           <ul className="flex gap-10 text-sm lg:gap-16">
