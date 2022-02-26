@@ -3,13 +3,24 @@
 @tailwind utilities;
 
 @layer utilities {
-  .thin-scrollbar::-webkit-scrollbar {
+  .thin-scrollbar-y::-webkit-scrollbar {
     width: 0.5rem;
   }
-  .thin-scrollbar::-webkit-scrollbar-track {
+  .thin-scrollbar-y::-webkit-scrollbar-track {
     background: transparent;
   }
-  .thin-scrollbar::-webkit-scrollbar-thumb {
+  .thin-scrollbar-y::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 0.25rem;
+  }
+
+  .thin-scrollbar-x::-webkit-scrollbar {
+    height: 0.5rem;
+  }
+  .thin-scrollbar-x::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .thin-scrollbar-x::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.1);
     border-radius: 0.25rem;
   }

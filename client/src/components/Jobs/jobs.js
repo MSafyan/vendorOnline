@@ -12,7 +12,14 @@ const jobs = [
       },
     ],
     company: 'Plumbing Inc.',
+    location: 'New York, NY',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
+    poster: {
+      name: 'John Doe',
+      createdAt: dayjs().subtract(4, 'months').toDate(),
+    },
   },
   {
     id: 2,
@@ -25,7 +32,14 @@ const jobs = [
       },
     ],
     company: 'Plumbing Inc.',
+    location: 'New York, NY',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
+    poster: {
+      name: 'John Doe',
+      createdAt: dayjs().subtract(4, 'months').toDate(),
+    },
   },
   {
     id: 3,
@@ -38,7 +52,14 @@ const jobs = [
       },
     ],
     company: 'Plumbing Inc.',
+    location: 'New York, NY',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
+    poster: {
+      name: 'John Doe',
+      createdAt: dayjs().subtract(4, 'months').toDate(),
+    },
   },
   {
     id: 4,
@@ -51,7 +72,14 @@ const jobs = [
       },
     ],
     company: 'Plumbing Inc.',
+    location: 'New York, NY',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
+    poster: {
+      name: 'John Doe',
+      createdAt: dayjs().subtract(4, 'months').toDate(),
+    },
   },
   {
     id: 5,
@@ -64,7 +92,14 @@ const jobs = [
       },
     ],
     company: 'Plumbing Inc.',
+    description:
+      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
+    location: 'New York, NY',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
+    poster: {
+      name: 'John Doe',
+      createdAt: dayjs().subtract(4, 'months').toDate(),
+    },
   },
 ];
 
