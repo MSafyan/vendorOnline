@@ -13,7 +13,7 @@ const JobsList = () => {
 
       <div className="thin-scrollbar-y mt-4 grid h-[80vh] grid-cols-2 gap-x-4 gap-y-6 overflow-auto px-4">
         {jobs.map((job) => (
-          <JobCard job={job} />
+          <JobCard job={job} key={job.id} />
         ))}
       </div>
     </div>

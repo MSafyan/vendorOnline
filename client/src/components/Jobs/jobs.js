@@ -17,6 +17,7 @@ const jobs = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
     poster: {
+      id: 1,
       name: 'John Doe',
       createdAt: dayjs().subtract(4, 'months').toDate(),
     },
@@ -37,6 +38,7 @@ const jobs = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
     poster: {
+      id: 1,
       name: 'John Doe',
       createdAt: dayjs().subtract(4, 'months').toDate(),
     },
@@ -57,6 +59,7 @@ const jobs = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
     poster: {
+      id: 1,
       name: 'John Doe',
       createdAt: dayjs().subtract(4, 'months').toDate(),
     },
@@ -77,6 +80,7 @@ const jobs = [
       'Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid dignissimos illum delectus, quidem, ut corporis itaque rerum ab impedit hic dicta dolorum perspiciatis officiis provident. Aliquid illo quo itaque dolores?',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
     poster: {
+      id: 1,
       name: 'John Doe',
       createdAt: dayjs().subtract(4, 'months').toDate(),
     },
@@ -97,6 +101,7 @@ const jobs = [
     location: 'New York, NY',
     createdAt: dayjs().subtract(4, 'hours').toDate(),
     poster: {
+      id: 1,
       name: 'John Doe',
       createdAt: dayjs().subtract(4, 'months').toDate(),
     },

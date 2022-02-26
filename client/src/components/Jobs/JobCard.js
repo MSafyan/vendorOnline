@@ -2,9 +2,6 @@ import Rating from '../Utils/Rating';
 import currencyFormatter from '../../utils/currencyFormatter';
 import { useNavigate } from 'react-router-dom';
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
-
-dayjs.extend(relativeTime);
 
 const JobCard = ({ job }) => {
   const navigate = useNavigate();

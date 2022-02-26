@@ -1,8 +1,12 @@
 import Rating from '../Utils/Rating';
 import currencyFormatter from '../../utils/currencyFormatter';
 import dayjs from 'dayjs';
+import { useNavigate } from 'react-router-dom';
+import firstCharacter from '../../utils/firstCharacter';
 
 const JobDetails = ({ job }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-full rounded bg-gray-100 px-6 py-10">
       {/* info section */}
@@ -23,7 +27,10 @@ const JobDetails = ({ job }) => {
 
         <h5 className="mt-3 text-xs text-gray-600">{job.company}</h5>
 
-        <button className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600">
+        <button
+          className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600"
+          onClick={() => navigate(`/chats?cu=${job.poster.id}`)}
+        >
           Message
         </button>
       </div>
@@ -53,7 +60,3 @@ const JobDetails = ({ job }) => {
 };
 
 export default JobDetails;
-
-const firstCharacter = (str) => {
-  return str.charAt(0).toUpperCase();
-};

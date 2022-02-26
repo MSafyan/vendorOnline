@@ -1,12 +1,13 @@
-import { Suspense, lazy } from "react";
-import { Routes, Route } from "react-router-dom";
-import BarLoader from "react-bar-loader";
+import { Suspense, lazy } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import BarLoader from 'react-bar-loader';
 
-const Home = lazy(() => import("../screens/Home"));
-const Profile = lazy(() => import("../screens/Profile"));
-const PostJob = lazy(() => import("../screens/PostJob"));
-const Job = lazy(() => import("../screens/Job"));
-const Jobs = lazy(() => import("../screens/Jobs"));
+const Home = lazy(() => import('../screens/Home'));
+const Profile = lazy(() => import('../screens/Profile'));
+const PostJob = lazy(() => import('../screens/PostJob'));
+const Job = lazy(() => import('../screens/Job'));
+const Jobs = lazy(() => import('../screens/Jobs'));
+const Chats = lazy(() => import('../screens/Chats'));
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/post-job" element={<PostJob />} />
         <Route path="/jobs/:id" element={<Job />} />
         <Route path="/jobs" element={<Jobs />} />
+        <Route path="/chats" element={<Chats />} />
       </Routes>
     </Suspense>
   );

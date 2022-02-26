@@ -19,7 +19,7 @@ const validationSchema = yup.object().shape({
 const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
   const onSubmit = (values, { resetForm }) => {
     console.log(values);
-    localStorage.setItem('user', JSON.stringify(values));
+    localStorage.setItem('user', JSON.stringify({ id: 2, ...values }));
     setIsOpen(false);
     resetForm();
   };
