@@ -3,6 +3,7 @@ const express = require('express');
 const http = require('http');
 const cors = require('cors');
 const fileUpload = require('express-fileupload');
+const cookieParser = require('cookie-parser');
 const socketIo = require('socket.io');
 const apiRoutes = require('./routes');
 // const deserializeUser = require('./src/middlewares/deserializeUser');
@@ -32,6 +33,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
+app.use(cookieParser());
 // app.use(deserializeUser);
 
 app.use(express.static('build'));
