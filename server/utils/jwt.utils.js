@@ -1,21 +1,21 @@
-import jwt from 'jsonwebtoken';
-import setEnv from './setEnv';
+const jwt = require('jsonwebtoken');
+const setEnv = require('./setEnv');
 
 setEnv();
 
 const PRIVATE_KEY = process.env.PRIVATE_KEY?.replace(/\\n/g, '\n');
 const PUBLIC_KEY = process.env.PUBLIC_KEY?.replace(/\\n/g, '\n');
 
-export function sign(object, options) {
+exports.sign = (object, options) => {
   if (!PRIVATE_KEY) return '';
 
   return jwt.sign(object, PRIVATE_KEY, {
     ...(options && options),
     algorithm: 'RS256',
   });
-}
+};
 
-export function decode(token) {
+exports.decode = (token) => {
   try {
     if (!PUBLIC_KEY) return { valid: false, expired: false, decoded: null };
 
@@ -29,4 +29,4 @@ export function decode(token) {
       decoded: jwt.decode(token),
     };
   }
-}
+};
