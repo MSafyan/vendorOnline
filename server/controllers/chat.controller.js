@@ -15,10 +15,12 @@ class ChatController {
         });
       }
 
-      const chat = await Chat.create({ users }).populate('users');
+      const chat = await Chat.create({ users });
+
+      const populatedChat = await Chat.populate(chat, { path: 'users' });
 
       res.status(201).json({
-        data: chat,
+        data: populatedChat,
       });
     } catch (error) {
       console.log(error);
@@ -39,7 +41,8 @@ class ChatController {
           .sort({
             createdAt: -1,
           })
-          .populate('sender');
+          .populate('sender')
+          .populate('job');
         chat.messages = [message];
       }
 
@@ -58,9 +61,9 @@ class ChatController {
     try {
       const chat = await Chat.findById(req.params.id).populate('users');
 
-      const messages = await Message.find({ chat: chat._id }).populate(
-        'sender'
-      );
+      const messages = await Message.find({ chat: chat._id })
+        .populate('sender')
+        .populate('job');
 
       const chatWithMessages = { ...chat.toJSON(), messages };
 

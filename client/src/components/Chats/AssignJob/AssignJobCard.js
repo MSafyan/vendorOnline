@@ -94,7 +94,7 @@ const AssignJobCard = ({ job, assignTo, chatId, onClose }) => {
   );
 
   return (
-    <div className="mx-2 flex min-w-max max-w-xs flex-col items-center py-2 pl-4 first:pl-0">
+    <div className="mx-2 flex min-w-[8rem] max-w-xs flex-col items-center py-2 pl-4 first:pl-0">
       <h3 className="text-gray-900">{job?.title}</h3>
       <span className="text-sm text-gray-700">
         {currencyFormatter(job?.budget)}
