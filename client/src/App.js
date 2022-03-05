@@ -18,16 +18,16 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <QueryClientProvider client={queryClient}>
-        <LoginProvider>
-          <BrowserRouter>
+        <BrowserRouter>
+          <LoginProvider>
             <Header />
             <div className="flex flex-1 flex-col">
               <Router />
             </div>
             <Footer />
-          </BrowserRouter>
-          <ToastContainer />
-        </LoginProvider>
+          </LoginProvider>
+        </BrowserRouter>
+        <ToastContainer />
         <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>

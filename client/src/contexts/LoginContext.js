@@ -10,8 +10,9 @@ const LoginProvider = ({ children }) => {
 
   function checkUserData() {
     const userData = localStorage.getItem('user');
+
     if (userData) {
-      setUser(userData);
+      setUser(JSON.parse(userData));
       setIsLoggedIn(true);
     } else {
       setUser(null);

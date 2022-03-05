@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 const ImageViewer = ({ images }) => {
-  console.log(images);
   const [currentImage, setCurrentImage] = useState(images[0]);
 
   return (

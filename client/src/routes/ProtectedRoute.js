@@ -2,14 +2,13 @@ import useLoggedIn from '../hooks/useLoggedIn';
 import { Navigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ component }) => {
-  const { recheck } = useLoggedIn();
-  const isLoggedIn = recheck();
+  const { isLoggedIn } = useLoggedIn();
 
-  if (!isLoggedIn) {
-    return <Navigate to="/" />;
+  if (isLoggedIn) {
+    return component;
   }
 
-  return component;
+  return <Navigate to="/" />;
 };
 
 export default ProtectedRoute;

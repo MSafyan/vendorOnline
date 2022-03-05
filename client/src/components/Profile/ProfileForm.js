@@ -6,6 +6,7 @@ import Rating from '../Utils/Rating';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { UserAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
+import useLoggedIn from '../../hooks/useLoggedIn';
 
 const initialValues = {
   profileImage: null,
@@ -28,11 +29,12 @@ const validationSchema = yup.object().shape({
 const ProfileForm = () => {
   const [profile, setProfile] = useState(null);
 
+  const { recheck } = useLoggedIn();
+
   const queryClient = useQueryClient();
 
   const { isLoading } = useQuery('profile', () => UserAPI.getProfile(), {
     onSuccess: (data) => {
-      console.log(data);
       setProfile(data);
     },
   });
@@ -42,11 +44,18 @@ const ProfileForm = () => {
     (values) => UserAPI.updateProfile(values),
     {
       onSuccess: (data) => {
-        queryClient.cache.setQueryData('profile', data);
-
-        console.log(data);
+        queryClient.setQueryData('profile', data);
 
         setProfile(data);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            _id: data._id,
+            name: data.name,
+            email: data.email,
+          })
+        );
+        recheck();
       },
     }
   );

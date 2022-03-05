@@ -7,7 +7,7 @@ import SignupModal from './SignupModal';
 import useLoggedIn from '../../hooks/useLoggedIn';
 
 const Header = () => {
-  const { isLoggedIn, logout } = useLoggedIn();
+  const { isLoggedIn, logout, user } = useLoggedIn();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
   const { activePage } = useActivePage();
@@ -72,7 +72,7 @@ const Header = () => {
             <>
               <Link to="/profile" className="flex items-center gap-1">
                 <UserIcon className="h-6 w-6 text-primary-500" />
-                Mike
+                <span className="text-gray-900">{user.name}</span>
               </Link>
               <div className="ml-8">
                 <button
