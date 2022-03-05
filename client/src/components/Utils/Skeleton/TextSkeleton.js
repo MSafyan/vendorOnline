@@ -1,4 +1,4 @@
-const TextSkeleton = ({ size = 'md' }) => {
+const TextSkeleton = ({ size = 'md', className }) => {
   let sizeClasses = '';
 
   if (size === 'sm') {
@@ -10,8 +10,8 @@ const TextSkeleton = ({ size = 'md' }) => {
   }
 
   return (
-    <div className="animate-pulse py-1">
-      <div class={`${sizeClasses} rounded bg-slate-200`}></div>
+    <div className={`animate-pulse py-1 ${className}`}>
+      <div class={`${sizeClasses} w-full rounded bg-slate-200`}></div>
     </div>
   );
 };

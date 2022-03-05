@@ -1,5 +1,5 @@
-import RectangleSkeleton from '../Skeleton/RectangleSkeleton';
-import TextSkeleton from '../Skeleton/TextSkeleton';
+import RectangleSkeleton from '../Utils/Skeleton/RectangleSkeleton';
+import TextSkeleton from '../Utils/Skeleton/TextSkeleton';
 
 const SkeletonCard = () => {
   return (
@@ -11,15 +11,11 @@ const SkeletonCard = () => {
 
       {/* info section */}
       <div className="px-6 py-3">
-        <div className="w-1/3">
-          <TextSkeleton size="lg" />
-        </div>
-        <div className="w-2/3">
-          <TextSkeleton size="md" />
-        </div>
-        <div className="w-1/6">
-          <TextSkeleton size="sm" />
-        </div>
+        <TextSkeleton size="lg" className="w-1/3" />
+
+        <TextSkeleton size="md" className="w-2/3" />
+
+        <TextSkeleton size="sm" className="w-1/6" />
       </div>
     </div>
   );

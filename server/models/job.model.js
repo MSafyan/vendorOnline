@@ -192,6 +192,15 @@ JobSchema.methods.toJSON = function () {
     return process.env.BASE_URL + image;
   });
 
+  if (jobObject.createdBy?.profileImage)
+    jobObject.createdBy.profileImage =
+      process.env.BASE_URL + jobObject.createdBy.profileImage;
+
+  if (jobObject.assignedTo?.profileImage) {
+    jobObject.assignedTo.profileImage =
+      process.env.BASE_URL + jobObject.assignedTo.profileImage;
+  }
+
   return jobObject;
 };
 
