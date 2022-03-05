@@ -80,10 +80,23 @@ UserSchema.methods.generateToken = function () {
   const token = sign({
     _id: user._id,
     email: user.email,
-    name: user.name,
-    profileImage: user.profileImage,
   });
   return token;
+};
+
+// get user without password and profileImage with base url
+UserSchema.methods.toJSON = function () {
+  const user = this;
+
+  const userObject = user.toObject();
+
+  delete userObject.password;
+
+  if (userObject.profileImage) {
+    userObject.profileImage = process.env.BASE_URL + user.profileImage;
+  }
+
+  return userObject;
 };
 
 // create model class

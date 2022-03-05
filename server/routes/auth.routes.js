@@ -16,7 +16,7 @@ router.post(
   validateRequest(AuthValidations.register()),
   AuthController.register
 );
-router.post('/logout', requireUser, AuthController.logout);
-router.get('/currentUser', requireUser, AuthController.getCurrentUser);
+router.post('/logout', requireUser(), AuthController.logout);
+router.get('/currentUser', requireUser(), AuthController.getCurrentUser);
 
 module.exports = router;

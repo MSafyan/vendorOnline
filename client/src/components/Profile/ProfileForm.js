@@ -1,10 +1,14 @@
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { CameraIcon } from '@heroicons/react/outline';
 import Rating from '../Utils/Rating';
+import { useMutation, useQuery, useQueryClient } from 'react-query';
+import { UserAPI } from '../../api';
+import LoaderIcon from '../../assets/icons/LoaderIcon';
 
 const initialValues = {
-  profilePic: null,
+  profileImage: null,
   name: '',
   company: '',
   companyLicense: '',
@@ -13,7 +17,7 @@ const initialValues = {
 };
 
 const validationSchema = yup.object().shape({
-  profilePic: yup.mixed(),
+  profileImage: yup.mixed(),
   name: yup.string().required('Name is required'),
   company: yup.string(),
   companyLicense: yup.string(),
@@ -22,8 +26,44 @@ const validationSchema = yup.object().shape({
 });
 
 const ProfileForm = () => {
+  const [profile, setProfile] = useState(null);
+
+  const queryClient = useQueryClient();
+
+  const { isLoading } = useQuery('profile', () => UserAPI.getProfile(), {
+    onSuccess: (data) => {
+      console.log(data);
+      setProfile(data);
+    },
+  });
+
+  const { mutate: update, isLoading: isUpdating } = useMutation(
+    'updateProfile',
+    (values) => UserAPI.updateProfile(values),
+    {
+      onSuccess: (data) => {
+        queryClient.cache.setQueryData('profile', data);
+
+        console.log(data);
+
+        setProfile(data);
+      },
+    }
+  );
+
   const onSubmit = (values) => {
-    console.log(values);
+    const formData = new FormData();
+
+    formData.append('name', values.name);
+    formData.append('company', values.company);
+    formData.append('companyLicense', values.companyLicense);
+    formData.append('companyWebsiteLink', values.companyWebsiteLink);
+    formData.append('bio', values.bio);
+    if (values.profileImage) {
+      formData.append('profileImage', values.profileImage);
+    }
+
+    update(formData);
   };
 
   const formik = useFormik({
@@ -32,21 +72,37 @@ const ProfileForm = () => {
     onSubmit,
   });
 
-  console.log(formik.values);
+  useEffect(() => {
+    if (profile) {
+      formik.setValues(profile);
+      formik.setFieldValue('profileImage', null);
+    }
+  }, [profile]);
 
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="mt-6 grid grid-cols-2 gap-x-16 gap-y-4 "
+      className="relative mt-3 grid grid-cols-2 gap-x-16 gap-y-4 px-4 py-3"
     >
+      {/* overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 z-10 flex items-center justify-center bg-gray-400/5">
+          <LoaderIcon className="h-16 w-16 text-gray-400" />
+        </div>
+      )}
+
       <div className="col-span-2 flex items-center justify-center gap-4">
         {/* profile pic */}
-        <div className="relative flex h-28 w-28 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full border-2 border-gray-700 text-gray-500">
+        <div className="relative flex h-28 w-28 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full border-2 border-gray-600 text-gray-500">
           <CameraIcon className="h-12 w-12" />
           <span className="text-xs font-bold">Add Photo</span>
-          {formik.values.profilePic && (
+          {(profile?.profileImage || formik.values.profileImage) && (
             <img
-              src={URL.createObjectURL(formik.values.profilePic)}
+              src={
+                formik.values.profileImage
+                  ? URL.createObjectURL(formik.values.profileImage)
+                  : profile?.profileImage
+              }
               alt="profile"
               className="absolute inset-0 h-full w-full bg-white object-cover"
             />
@@ -55,13 +111,13 @@ const ProfileForm = () => {
             type="file"
             className="absolute inset-0 cursor-pointer opacity-0"
             onChange={(e) => {
-              formik.setFieldValue('profilePic', e.target.files[0]);
+              formik.setFieldValue('profileImage', e.target.files[0]);
             }}
           />
         </div>
         {/* details */}
         <div>
-          <h4 className="text-xl font-medium">Name</h4>
+          <h4 className="text-xl font-medium">{profile?.name}</h4>
           <div className="flex items-center gap-1 text-xs font-medium">
             Reviews
             <Rating reviews={[{ rating: 3 }]} showLength />
@@ -152,7 +208,7 @@ const ProfileForm = () => {
           <textarea
             id="bio"
             placeholder="Write your bio"
-            className="mt-0.5 w-full flex-1 resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 ring-primary-600 focus:outline-none focus:ring-1"
+            className="mt-0.5 w-full flex-1 resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('bio')}
           />
           {formik.touched.bio && formik.errors.bio && (
@@ -165,10 +221,11 @@ const ProfileForm = () => {
 
       <div className="col-span-2 mt-2 text-center">
         <button
-          className=" rounded-xl bg-primary-500 py-1 px-8 font-semibold text-white transition hover:bg-primary-600"
+          className=" rounded-xl bg-primary-500 py-1 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:bg-gray-400"
           type="submit"
+          disabled={!formik.isValid || isUpdating}
         >
-          Save
+          {isUpdating ? <LoaderIcon /> : 'Save'}
         </button>
       </div>
     </form>

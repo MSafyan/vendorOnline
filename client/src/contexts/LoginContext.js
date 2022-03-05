@@ -17,6 +17,8 @@ const LoginProvider = ({ children }) => {
       setUser(null);
       setIsLoggedIn(false);
     }
+
+    return Boolean(userData);
   }
 
   useEffect(() => {
