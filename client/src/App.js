@@ -5,6 +5,7 @@ import Router from './routes';
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginProvider from './contexts/LoginContext';
@@ -27,6 +28,7 @@ function App() {
           </BrowserRouter>
           <ToastContainer />
         </LoginProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );

@@ -2,7 +2,7 @@ import BaseRoutes from './BaseRoutes';
 
 class UserApi extends BaseRoutes {
   constructor() {
-    super('/user');
+    super('/users');
   }
 
   getProfile = async () => {
