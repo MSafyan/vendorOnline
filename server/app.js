@@ -41,6 +41,10 @@ app.use(fileUpload());
 app.use(cookieParser());
 app.use(deserializeUser);
 
+app.use('/', (req, res, next) => {
+  next();
+});
+
 app.use(express.static('build'));
 app.use('/public', express.static('public'));
 // API Routes

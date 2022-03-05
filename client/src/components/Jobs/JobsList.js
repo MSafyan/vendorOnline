@@ -4,11 +4,14 @@ import SkeletonCard from './SkeletonCard';
 import { useQuery } from 'react-query';
 import { JobAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
+import useQueryParams from '../../hooks/useQueryParams';
 
 const JobsList = () => {
-  const { data: jobs, isLoading } = useQuery('jobs', JobAPI.getJobs);
-
-  console.log(jobs);
+  const [searchParams] = useQueryParams();
+  const { data: jobs, isLoading } = useQuery(
+    ['jobs', { search: searchParams }],
+    () => JobAPI.getJobs({ search: searchParams.q })
+  );
 
   return (
     <div className="px-4 py-6">
@@ -28,7 +31,7 @@ const JobsList = () => {
       <div className="thin-scrollbar-y mt-4 grid h-[80vh] grid-cols-2 items-start gap-x-4 gap-y-6 overflow-auto px-4">
         {isLoading
           ? [...new Array(4)].map((_, index) => <SkeletonCard key={index} />)
-          : jobs.map((job) => <JobCard job={job} key={job.id} />)}
+          : jobs.map((job) => <JobCard job={job} key={job._id} />)}
       </div>
     </div>
   );

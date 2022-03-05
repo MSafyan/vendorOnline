@@ -13,10 +13,6 @@ const Job = () => {
     JobAPI.getJob(subPage)
   );
 
-  console.log(job);
-
-  // const job = jobs.find((job) => job.id === parseInt(subPage));
-
   return (
     <main className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-12 gap-4 py-10">
       <div className="col-span-8">

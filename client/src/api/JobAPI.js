@@ -5,8 +5,8 @@ class JobAPI extends BaseRoutes {
     super('/jobs');
   }
 
-  getJobs = async () => {
-    const res = await this._get('/');
+  getJobs = async ({ search } = {}) => {
+    const res = await this._get(`/${search ? `?search=${search}` : ''}`);
 
     return res;
   };

@@ -4,7 +4,7 @@ const uploadFiles = require('../utils/uploadFiles');
 class JobController {
   static async getAllJobs(req, res) {
     try {
-      const { page, limit, status } = req.query;
+      const { page, limit, status, search } = req.query;
 
       const jobsQuery = Job.find({
         status: status ? status : { $ne: 'deleted' },
@@ -16,6 +16,16 @@ class JobController {
 
       if (page && limit) {
         jobsQuery.skip(parseInt(page) * parseInt(limit)).limit(parseInt(limit));
+      }
+
+      if (search) {
+        jobsQuery.find({
+          $or: [
+            { title: { $regex: search, $options: 'i' } },
+            { description: { $regex: search, $options: 'i' } },
+            { location: { $regex: search, $options: 'i' } },
+          ],
+        });
       }
 
       const jobs = await jobsQuery.exec();

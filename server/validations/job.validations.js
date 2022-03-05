@@ -10,6 +10,7 @@ class JobValidations {
           .string()
           .oneOf(['pending', 'ongoing', 'completed', 'deleted'])
           .nullable(),
+        search: yup.string().nullable(),
       }),
     });
   }

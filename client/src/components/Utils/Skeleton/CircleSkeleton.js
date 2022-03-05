@@ -11,7 +11,7 @@ const CircleSkeleton = ({ size = 'md' }) => {
 
   return (
     <div className="animate-pulse">
-      <div class={`${sizeClasses} rounded-full bg-slate-200`}></div>
+      <div className={`${sizeClasses} rounded-full bg-slate-200`}></div>
     </div>
   );
 };

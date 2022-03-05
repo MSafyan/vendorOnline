@@ -11,7 +11,7 @@ const TextSkeleton = ({ size = 'md', className }) => {
 
   return (
     <div className={`animate-pulse py-1 ${className}`}>
-      <div class={`${sizeClasses} w-full rounded bg-slate-200`}></div>
+      <div className={`${sizeClasses} w-full rounded bg-slate-200`}></div>
     </div>
   );
 };
