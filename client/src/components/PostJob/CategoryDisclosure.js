@@ -1,20 +1,19 @@
 import { Disclosure, Transition } from '@headlessui/react';
 import { ChevronRightIcon } from '@heroicons/react/outline';
-// import categories from './categories';
 import { useQuery } from 'react-query';
 import { CategoryAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
 
-const CategoryDisclosure = ({ selected, setSelected }) => {
+const CategoryDisclosure = ({ selected, setSelected, error }) => {
   const { data: categories, isLoading } = useQuery(
     'categories',
     CategoryAPI.getCategories
   );
 
   return (
-    <div className="w-full bg-primary-500/5">
+    <div className="w-full ">
       {isLoading ? (
-        <LoaderIcon className="h-16 w-16 text-primary-400" />
+        <LoaderIcon className="mx-auto h-16 w-16 text-primary-400" />
       ) : (
         categories?.map((category) => (
           <Disclosure key={category._id} as="div" className="mt-0.5">
@@ -34,7 +33,7 @@ const CategoryDisclosure = ({ selected, setSelected }) => {
                   leaveFrom="transform scale-100 opacity-100"
                   leaveTo="transform scale-95 opacity-0"
                 >
-                  <Disclosure.Panel className="px-2 py-1 text-sm text-gray-500">
+                  <Disclosure.Panel className="bg-primary-500/5 px-2 py-1 text-sm text-gray-500">
                     <ul className="flex flex-wrap gap-x-2 gap-y-1">
                       {category.subcategories.map((subcategory) => (
                         <li
@@ -54,7 +53,7 @@ const CategoryDisclosure = ({ selected, setSelected }) => {
                               }
                             }}
                           />
-                          <label for={`subcategory-${subcategory._id}`}>
+                          <label htmlFor={`subcategory-${subcategory._id}`}>
                             {subcategory.name}
                           </label>
                         </li>
@@ -67,6 +66,8 @@ const CategoryDisclosure = ({ selected, setSelected }) => {
           </Disclosure>
         ))
       )}
+
+      {error && <div className="mt-1 text-xs text-red-600">* {error}</div>}
     </div>
   );
 };

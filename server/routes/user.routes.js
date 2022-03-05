@@ -6,7 +6,7 @@ const requireUser = require('../middlewares/requireUser');
 
 const router = express.Router();
 
-router.get('/profile', [requireUser()], UserController.getProfile);
+router.get('/profile', requireUser(), UserController.getProfile);
 router.put(
   '/profile',
   [requireUser(), validateRequest(UserValidations.updateProfile())],

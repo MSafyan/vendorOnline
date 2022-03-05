@@ -9,7 +9,7 @@ const requireUser =
       });
     }
 
-    if (self && user._id !== req.params._id) {
+    if (self && user._id !== req[self]) {
       return res.status(401).json({
         message: 'Unauthorized',
       });

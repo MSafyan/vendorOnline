@@ -38,6 +38,8 @@ const uploadFiles = (files, directory = 'others') => {
 
     return path;
   }
+
+  return [];
 };
 
 module.exports = uploadFiles;
