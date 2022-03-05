@@ -4,10 +4,35 @@ import dayjs from 'dayjs';
 import { useNavigate } from 'react-router-dom';
 import firstCharacter from '../../utils/firstCharacter';
 import useLoggedIn from '../../hooks/useLoggedIn';
+import { useMutation, useQueryClient } from 'react-query';
+import { ChatAPI } from '../../api';
+import LoaderIcon from '../../assets/icons/LoaderIcon';
 
 const JobDetails = ({ job }) => {
   const { isLoggedIn, user } = useLoggedIn();
   const navigate = useNavigate();
+
+  const queryClient = useQueryClient();
+  const { mutate: createChat, isLoading } = useMutation(
+    'createChat',
+    ChatAPI.createChat,
+    {
+      onSuccess: (newChat) => {
+        queryClient.setQueryData('chats', (old) => {
+          if (!old) return [newChat];
+
+          const chatCheck = old.find((chat) => chat._id === newChat._id);
+          if (chatCheck) {
+            return old;
+          }
+
+          return [...old, newChat];
+        });
+
+        navigate(`/chats?cu=${job.createdBy._id}`);
+      },
+    }
+  );
 
   return (
     <div className="w-full rounded bg-gray-100 px-6 py-10">
@@ -35,11 +60,13 @@ const JobDetails = ({ job }) => {
         {isLoggedIn && user?._id === job.createdBy._id ? null : (
           <button
             className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:opacity-50 disabled:hover:bg-primary-500"
-            onClick={() => navigate(`/chats?cu=${job.createdBy._id}`)}
-            disabled={!isLoggedIn}
+            onClick={() => {
+              createChat([user._id, job.createdBy._id]);
+            }}
+            disabled={!isLoggedIn || isLoading}
             title={!isLoggedIn ? 'You must be logged in to chat' : ''}
           >
-            Message
+            {isLoading ? <LoaderIcon /> : 'Message'}
           </button>
         )}
       </div>

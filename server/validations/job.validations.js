@@ -1,4 +1,5 @@
 const yup = require('yup');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 class JobValidations {
   static getAllJobs() {
@@ -8,7 +9,14 @@ class JobValidations {
         limit: yup.number().integer().min(1).nullable(),
         status: yup
           .string()
-          .oneOf(['pending', 'ongoing', 'completed', 'deleted'])
+          .oneOf([
+            'active',
+            'inactive',
+            'assigned',
+            'completed',
+            'cancelled',
+            'deleted',
+          ])
           .nullable(),
         search: yup.string().nullable(),
       }),
@@ -18,7 +26,12 @@ class JobValidations {
   static getJobById() {
     return yup.object().shape({
       params: yup.object().shape({
-        id: yup.string().required(),
+        id: yup
+          .string()
+          .required()
+          .test('ObjectId', 'Invalid id', (value) => {
+            return ObjectId.isValid(value);
+          }),
       }),
     });
   }
@@ -28,7 +41,12 @@ class JobValidations {
       body: yup.object().shape({
         title: yup.string().required('Title is required'),
         description: yup.string().required('Description is required'),
-        category: yup.string().required('Category is required'),
+        category: yup
+          .string()
+          .required('Category is required')
+          .test('ObjectId', 'Invalid id', (value) => {
+            return ObjectId.isValid(value);
+          }),
         company: yup.string(),
         location: yup.string().required('Location is required'),
         budget: yup.string().required('Budget is required'),
@@ -40,12 +58,19 @@ class JobValidations {
   static updateJob() {
     return yup.object().shape({
       params: yup.object().shape({
-        id: yup.string().required(),
+        id: yup
+          .string()
+          .required()
+          .test('ObjectId', 'Invalid id', (value) => {
+            return ObjectId.isValid(value);
+          }),
       }),
       body: yup.object().shape({
         title: yup.string(),
         description: yup.string(),
-        category: yup.string(),
+        category: yup.string().test('ObjectId', 'Invalid id', (value) => {
+          return ObjectId.isValid(value);
+        }),
         company: yup.string(),
         location: yup.string(),
         budget: yup.string(),
@@ -62,7 +87,12 @@ class JobValidations {
   static deleteJob() {
     return yup.object().shape({
       params: yup.object().shape({
-        id: yup.string().required(),
+        id: yup
+          .string()
+          .required()
+          .test('ObjectId', 'Invalid id', (value) => {
+            return ObjectId.isValid(value);
+          }),
       }),
     });
   }

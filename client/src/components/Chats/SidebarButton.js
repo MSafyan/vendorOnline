@@ -10,9 +10,9 @@ const SidebarButton = ({ setActive, other, lastMessage, active }) => {
       onClick={setActive}
     >
       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-sm font-bold text-gray-600">
-        {other.profilePic ? (
+        {other.profileImage ? (
           <img
-            src={other.profilePic}
+            src={other.profileImage}
             alt="profile"
             className="h-full w-full object-cover"
           />
@@ -24,12 +24,14 @@ const SidebarButton = ({ setActive, other, lastMessage, active }) => {
         <h3 className="text-sm">{other.name}</h3>
         <div className="flex items-baseline">
           <p className="flex-1 truncate text-xs text-gray-600">
-            {lastMessage.text}
+            {lastMessage?.text}
           </p>
           <span className="text-xxs text-gray-500 ">
-            {dayjs(lastMessage.createdAt).diff(dayjs(), 'days') < 1
-              ? dayjs(lastMessage.createdAt).format('hh:mm A')
-              : dayjs(lastMessage.createdAt).fromNow()}
+            {lastMessage?.createdAt
+              ? dayjs(lastMessage.createdAt).diff(dayjs(), 'days') < 1
+                ? dayjs(lastMessage.createdAt).format('hh:mm A')
+                : dayjs(lastMessage.createdAt).fromNow()
+              : null}
           </span>
         </div>
       </div>

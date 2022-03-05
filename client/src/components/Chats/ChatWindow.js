@@ -3,9 +3,9 @@ import useLoggedIn from '../../hooks/useLoggedIn';
 import Messages from './Messages';
 import ChatInput from './ChatInput';
 
-const ChatWindow = ({ chat, sendMessage }) => {
+const ChatWindow = ({ chat }) => {
   const { user } = useLoggedIn();
-  const other = chat?.users.find((u) => u.id !== user.id);
+  const other = chat?.users.find((u) => u._id !== user._id);
 
   return (
     <div className="h-full bg-gray-50">
@@ -13,9 +13,9 @@ const ChatWindow = ({ chat, sendMessage }) => {
         <>
           <div className="flex w-full items-center gap-4 bg-primary-400 p-2">
             <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-300 text-sm font-bold text-gray-600">
-              {other.profilePic ? (
+              {other.profileImage ? (
                 <img
-                  src={other.profilePic}
+                  src={other.profileImage}
                   alt="profile"
                   className="h-full w-full object-cover"
                 />
@@ -27,8 +27,8 @@ const ChatWindow = ({ chat, sendMessage }) => {
             <h3 className="text-lg font-bold text-gray-50">{other.name}</h3>
           </div>
 
-          <Messages messages={chat.messages} user={user} />
-          <ChatInput chatId={chat.id} sendMessage={sendMessage} />
+          <Messages chatId={chat._id} />
+          <ChatInput chatId={chat._id} />
         </>
       )}
     </div>

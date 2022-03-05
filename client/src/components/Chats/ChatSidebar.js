@@ -1,7 +1,8 @@
 import SidebarButton from './SidebarButton';
+import SidebarButtonSkeleton from './SidebarButtonSkeleton';
 import useLoggedIn from '../../hooks/useLoggedIn';
 
-const ChatSidebar = ({ chats, activeChat, setActiveChat }) => {
+const ChatSidebar = ({ chats, activeChat, setActiveChat, isLoading }) => {
   const { user } = useLoggedIn();
 
   return (
@@ -11,15 +12,17 @@ const ChatSidebar = ({ chats, activeChat, setActiveChat }) => {
       </div>
 
       <div className="thin-scrollbar-y h-[60vh] overflow-y-auto">
-        {chats.map((chat) => (
-          <SidebarButton
-            setActive={() => setActiveChat(chat.id)}
-            other={chat.users.find((u) => u.id !== user.id)}
-            lastMessage={chat.messages[chat.messages.length - 1]}
-            key={chat.id}
-            active={activeChat === chat.id}
-          />
-        ))}
+        {isLoading
+          ? [...new Array(5)].map((_, i) => <SidebarButtonSkeleton key={i} />)
+          : chats?.map((chat) => (
+              <SidebarButton
+                setActive={() => setActiveChat(chat._id)}
+                other={chat.users.find((u) => u._id !== user._id)}
+                lastMessage={chat.messages?.[chat.messages?.length - 1] || {}}
+                key={chat._id}
+                active={activeChat === chat._id}
+              />
+            ))}
       </div>
     </aside>
   );
