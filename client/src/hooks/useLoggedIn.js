@@ -1,22 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { LoginContext } from '../contexts/LoginContext';
 
 const useLoggedIn = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, logout, recheck, user } = useContext(LoginContext);
 
-  const user = JSON.parse(localStorage.getItem('user'));
-
-  useEffect(() => {
-    if (user) {
-      setIsLoggedIn(true);
-    }
-  }, [user]);
-
-  const logout = () => {
-    localStorage.removeItem('user');
-    setIsLoggedIn(false);
-  };
-
-  return { isLoggedIn, logout, user };
+  return { isLoggedIn, logout, recheck, user };
 };
 
 export default useLoggedIn;

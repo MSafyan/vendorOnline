@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { useFormik } from 'formik';
@@ -5,16 +6,19 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 // import FacebookIcon from '../../assets/icons/FacebookIcon';
 // import GoogleIcon from '../../assets/icons/GoogleIcon';
+import { useMutation } from 'react-query';
+import { AuthAPI } from '../../api';
+import LoaderIcon from '../../assets/icons/LoaderIcon';
 
 const initialValues = {
-  userId: '',
+  email: '',
   name: '',
   password: '',
   confirmPassword: '',
 };
 
 const validationSchema = yup.object().shape({
-  userId: yup.string().email().required('User id/Email is required'),
+  email: yup.string().email().required('User id/Email is required'),
   name: yup.string().required('Name is required'),
   password: yup
     .string()
@@ -27,10 +31,18 @@ const validationSchema = yup.object().shape({
 });
 
 const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values);
-    setIsOpen(false);
-    resetForm();
+  const [toOpenLogin, setToOpenLogin] = useState(false);
+
+  const { mutate: register, isLoading } = useMutation(AuthAPI.register, {
+    onSuccess: () => {
+      setIsOpen(false);
+      formik.resetForm();
+      setToOpenLogin(true);
+    },
+  });
+
+  const onSubmit = (values) => {
+    register({ ...values });
   };
 
   const formik = useFormik({
@@ -40,7 +52,16 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
   });
 
   return (
-    <Transition.Root show={isOpen} afterLeave={formik.resetForm}>
+    <Transition.Root
+      show={isOpen}
+      afterLeave={() => {
+        formik.resetForm();
+        if (toOpenLogin) {
+          openLogin();
+          setToOpenLogin(false);
+        }
+      }}
+    >
       <Dialog
         onClose={() => setIsOpen(false)}
         className="fixed inset-0 flex items-center justify-center"
@@ -86,11 +107,11 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
                   type="email"
                   placeholder="Email"
                   className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
-                  {...formik.getFieldProps('userId')}
+                  {...formik.getFieldProps('email')}
                 />
-                {formik.touched.userId && formik.errors.userId && (
+                {formik.touched.email && formik.errors.email && (
                   <div className="mt-1 text-xs text-red-600">
-                    * {formik.errors.userId}
+                    * {formik.errors.email}
                   </div>
                 )}
               </div>
@@ -121,7 +142,7 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
                   id="password"
                   type="password"
                   placeholder="Password"
-                  className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
+                  className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-600 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
                   {...formik.getFieldProps('password')}
                 />
                 {formik.touched.password && formik.errors.password && (
@@ -155,17 +176,18 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
 
               <button
                 type="submit"
-                className="w-full rounded bg-primary-600 px-6 py-1.5 text-center text-white transition hover:bg-primary-500"
+                className="w-full rounded bg-primary-600 px-6 py-1.5 text-center text-white transition hover:bg-primary-500 disabled:bg-gray-500"
+                disabled={isLoading}
               >
-                Sign in
+                {isLoading ? <LoaderIcon /> : 'Sign up'}
               </button>
             </form>
 
-            {/* <div className="relative flex h-px w-full justify-center bg-gray-400">
+            <div className="relative flex h-px w-full justify-center bg-gray-400">
               <span className="absolute -translate-y-2.5 bg-white px-1  text-sm font-medium">
                 Or
               </span>
-            </div> */}
+            </div>
 
             {/* <button className="relative w-full rounded-md bg-[#385995] px-6 py-1 font-medium text-white">
               <FacebookIcon className="absolute top-0 left-0 ml-4 mt-2 h-4 w-4" />{' '}
@@ -175,18 +197,19 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
               <GoogleIcon className="absolute top-0 left-0 ml-4 mt-1 h-6 w-6" />
               Sign up with Google
             </button> */}
-            {/* <div>
+            <div>
               <button
                 className="relative mt-2 w-full rounded-md border border-gray-400 px-6 py-1 font-medium text-gray-700 transition hover:bg-gray-100"
                 onClick={() => {
                   setIsOpen(false);
-                  openLogin();
+                  setToOpenLogin(true);
                 }}
                 type="button"
+                disabled={isLoading}
               >
                 Sign in
               </button>
-            </div> */}
+            </div>
           </div>
         </Transition.Child>
       </Dialog>

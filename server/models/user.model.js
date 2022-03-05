@@ -57,7 +57,7 @@ UserSchema.pre('save', async function (next) {
   if (!user.isModified('password')) return next();
 
   // const saltRounds = config.get<number>('saltRounds');
-  const saltRounds = process.env.SALT_ROUNDS || 10;
+  const saltRounds = parseInt(process.env.SALT_ROUNDS) || 10;
 
   const salt = bcrypt.genSaltSync(saltRounds);
   const hash = bcrypt.hashSync(user.password, salt);

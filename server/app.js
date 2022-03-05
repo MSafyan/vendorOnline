@@ -6,8 +6,9 @@ const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const socketIo = require('socket.io');
 const apiRoutes = require('./routes');
-// const deserializeUser = require('./src/middlewares/deserializeUser');
+const deserializeUser = require('./middlewares/deserializeUser');
 const setEnv = require('./utils/setEnv');
+const connectDB = require('./utils/connectDB');
 
 setEnv();
 
@@ -29,12 +30,16 @@ const PORT = process.env.PORT || 5000;
 // require('./src/socketManger/socketManger')(io);
 
 //Middlwares
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(fileUpload());
 app.use(cookieParser());
-// app.use(deserializeUser);
+app.use(deserializeUser);
 
 app.use(express.static('build'));
 app.use('/public', express.static('public'));
@@ -47,4 +52,6 @@ app.use('/api/', apiRoutes);
 
 server.listen(PORT, () => {
   console.log(`Server Is running on ${process.env.BASE_URL}`);
+
+  connectDB();
 });
