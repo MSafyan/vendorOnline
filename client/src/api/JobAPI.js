@@ -5,8 +5,31 @@ class JobAPI extends BaseRoutes {
     super('/jobs');
   }
 
-  getJobs = async ({ search } = {}) => {
-    const res = await this._get(`/${search ? `?search=${search}` : ''}`);
+  getJobs = async ({ search, createdBy, status } = {}) => {
+    let queryString = '';
+    if (search || createdBy || status) {
+      queryString = `?`;
+    }
+
+    if (search) {
+      queryString += `search=${search}`;
+    }
+
+    if (createdBy) {
+      if (queryString.length > 1) {
+        queryString += `&`;
+      }
+      queryString += `createdBy=${createdBy}`;
+    }
+
+    if (status) {
+      if (queryString.length > 1) {
+        queryString += `&`;
+      }
+      queryString += `status=${status}`;
+    }
+
+    const res = await this._get(queryString);
 
     return res;
   };

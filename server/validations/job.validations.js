@@ -19,6 +19,13 @@ class JobValidations {
           ])
           .nullable(),
         search: yup.string().nullable(),
+        createdBy: yup
+          .string()
+          .nullable()
+          .test('ObjectId', 'Invalid id', (value) => {
+            if (!value) return true;
+            return ObjectId.isValid(value);
+          }),
       }),
     });
   }
@@ -69,6 +76,7 @@ class JobValidations {
         title: yup.string(),
         description: yup.string(),
         category: yup.string().test('ObjectId', 'Invalid id', (value) => {
+          if (!value) return true;
           return ObjectId.isValid(value);
         }),
         company: yup.string(),

@@ -5,7 +5,7 @@ import ChatInput from './ChatInput';
 
 const ChatWindow = ({ chat }) => {
   const { user } = useLoggedIn();
-  const other = chat?.users.find((u) => u._id !== user._id);
+  const other = chat?.users.find((u) => u._id !== user?._id);
 
   return (
     <div className="h-full bg-gray-50">
@@ -28,7 +28,7 @@ const ChatWindow = ({ chat }) => {
           </div>
 
           <Messages chatId={chat._id} />
-          <ChatInput chatId={chat._id} />
+          <ChatInput chatId={chat._id} other={other} />
         </>
       )}
     </div>

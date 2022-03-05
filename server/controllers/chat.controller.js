@@ -58,11 +58,14 @@ class ChatController {
     try {
       const chat = await Chat.findById(req.params.id).populate('users');
 
-      chat.messages =
-        (await Message.find({ chat: chat._id }).populate('sender')) || [];
+      const messages = await Message.find({ chat: chat._id }).populate(
+        'sender'
+      );
+
+      const chatWithMessages = { ...chat.toJSON(), messages };
 
       res.status(200).json({
-        data: chat,
+        data: chatWithMessages,
       });
     } catch (error) {
       console.log(error);
@@ -103,8 +106,12 @@ class ChatController {
         type: 'reference',
       });
 
+      const populatedMessage = await Message.findById(message._id)
+        .populate('sender')
+        .populate('job');
+
       res.status(201).json({
-        data: message,
+        data: populatedMessage,
       });
     } catch (error) {
       console.log(error);

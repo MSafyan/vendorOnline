@@ -22,7 +22,10 @@ const Router = () => {
         <Route path="/post-job" element={<PostJob />} />
         <Route path="/jobs/:id" element={<Job />} />
         <Route path="/jobs" element={<Jobs />} />
-        <Route path="/chats" element={<Chats />} />
+        <Route
+          path="/chats"
+          element={<ProtectedRoute component={<Chats />} />}
+        />
       </Routes>
     </Suspense>
   );

@@ -13,8 +13,6 @@ const MessageSkeleton = ({ self }) => {
     width = Math.random() * 10 + 10;
   }
 
-  console.log('height', height);
-
   return (
     <div
       className={` my-0.5 flex w-full ${

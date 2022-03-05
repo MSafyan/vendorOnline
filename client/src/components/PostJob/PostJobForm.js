@@ -44,7 +44,11 @@ const PostJobForm = () => {
     JobAPI.createJob,
     {
       onSuccess: (newJob) => {
-        queryClient.setQueryData('jobs', (old) => [...old, newJob]);
+        queryClient.setQueryData('jobs', (old) => {
+          if (!old) return [newJob];
+
+          return [...old, newJob];
+        });
 
         formik.resetForm();
       },

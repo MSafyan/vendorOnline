@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import AssignJob from './AssignJob';
 
-const ChatInput = ({ chatId, sendMessage }) => {
+const ChatInput = ({ chatId, sendMessage, other }) => {
   const [message, setMessage] = useState('');
 
   const onSubmit = (e) => {
@@ -21,16 +22,20 @@ const ChatInput = ({ chatId, sendMessage }) => {
       <input
         type="text"
         placeholder="Type a message..."
-        className=" w-full rounded-lg border-2 border-gray-200 py-2 px-4 focus:border-primary-300 focus:ring-0"
+        className=" w-full rounded-lg border-2 border-gray-200 py-2 pl-4 pr-28 focus:border-primary-300 focus:ring-0"
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <button
-        type="submit"
-        className="absolute right-0 top-1/2 mr-12 -translate-y-1/2 rounded-lg bg-primary-500 py-1 px-3 font-medium text-white"
-      >
-        Send
-      </button>
+      <div className="absolute right-0 top-1/2 mr-12 flex -translate-y-1/2 items-center gap-3">
+        <AssignJob assignTo={other} chatId={chatId} />
+
+        <button
+          type="submit"
+          className="rounded-lg bg-primary-500 py-1 px-3 font-medium text-white"
+        >
+          Send
+        </button>
+      </div>
     </form>
   );
 };

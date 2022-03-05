@@ -37,7 +37,7 @@ const Messages = ({ chatId }) => {
               <Message
                 message={message}
                 key={index}
-                self={message.sender._id === user._id}
+                self={message.sender._id === user?._id}
                 ref={index === chat.messages.length - 1 ? messagesEndRef : null}
               />
             ))}

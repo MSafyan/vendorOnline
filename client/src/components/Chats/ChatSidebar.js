@@ -17,7 +17,7 @@ const ChatSidebar = ({ chats, activeChat, setActiveChat, isLoading }) => {
           : chats?.map((chat) => (
               <SidebarButton
                 setActive={() => setActiveChat(chat._id)}
-                other={chat.users.find((u) => u._id !== user._id)}
+                other={chat.users.find((u) => u._id !== user?._id)}
                 lastMessage={chat.messages?.[chat.messages?.length - 1] || {}}
                 key={chat._id}
                 active={activeChat === chat._id}
