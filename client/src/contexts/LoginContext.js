@@ -16,6 +16,16 @@ const LoginProvider = ({ children }) => {
     if (userData?._id) {
       setUser(userData);
       setIsLoggedIn(true);
+
+      if (!socket) {
+        const socket = io('http://localhost:5000', {
+          query: {
+            user: localStorage.getItem('user'),
+          },
+        });
+
+        setSocket(socket);
+      }
     } else {
       localStorage.removeItem('user');
       setUser(null);
@@ -46,14 +56,6 @@ const LoginProvider = ({ children }) => {
           if (onSuccess) {
             onSuccess();
           }
-
-          const socket = io('http://localhost:5000', {
-            query: {
-              user: localStorage.getItem('user'),
-            },
-          });
-
-          setSocket(socket);
         },
       }
     );
