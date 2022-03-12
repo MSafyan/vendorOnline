@@ -18,20 +18,21 @@ const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 
 // socket
-// const io = socketIo(server, {
-//   cors: {
-//     origin: '*',
-//   },
-//   pingTimeout: 4000,
-//   pingInterval: 12000,
-// });
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+  },
+  pingTimeout: 4000,
+  pingInterval: 12000,
+});
 
-// global.io = io;
-// require('./src/socketManger/socketManger')(io);
+global.io = io;
+require('./sockets/SocketManger')(io);
 
 //Middlwares
 app.use(
   cors({
+    origin: 'http://localhost:3000',
     credentials: true,
   })
 );
@@ -42,6 +43,8 @@ app.use(cookieParser());
 app.use(deserializeUser);
 
 app.use('/', (req, res, next) => {
+  console.log('req: ', req.url);
+
   next();
 });
 

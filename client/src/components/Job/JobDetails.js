@@ -29,7 +29,11 @@ const JobDetails = ({ job }) => {
           return [...old, newChat];
         });
 
-        navigate(`/chats?cu=${job.createdBy._id}`);
+        navigate('/chats', {
+          state: {
+            cu: job.createdBy._id,
+          },
+        });
       },
     }
   );

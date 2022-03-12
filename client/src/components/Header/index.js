@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserIcon } from '@heroicons/react/solid';
-import { ChatAlt2Icon } from '@heroicons/react/outline';
 import useActivePage from '../../hooks/useActivePage';
 import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import useLoggedIn from '../../hooks/useLoggedIn';
+import ChatButton from './ChatButton';
 
 const Header = () => {
   const { isLoggedIn, logout, user } = useLoggedIn();
@@ -71,9 +71,7 @@ const Header = () => {
         <div className="flex items-center justify-end text-sm">
           {isLoggedIn ? (
             <>
-              <Link to="/chats" className="mr-4 flex items-center" title="Chat">
-                <ChatAlt2Icon className="h-6 w-6 text-primary-500" />
-              </Link>
+              <ChatButton />
               <Link to="/profile" className="flex items-center gap-1">
                 <UserIcon className="h-6 w-6 text-primary-500" />
                 <span className="text-gray-900">{user?.name}</span>

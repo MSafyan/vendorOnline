@@ -1,18 +1,21 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect } from 'react';
 import Message from './Message';
 import MessageSkeleton from './MessageSkeleton';
 import useLoggedIn from '../../hooks/useLoggedIn';
-import { useQuery } from 'react-query';
-import { ChatAPI } from '../../api';
 
-const Messages = ({ chatId }) => {
+const Messages = ({ chat, isLoading }) => {
   const { user } = useLoggedIn();
 
-  const { data: chat, isLoading } = useQuery(['chat', chatId], () =>
-    ChatAPI.getChat(chatId)
-  );
-
+  const messageContainerRef = useRef();
   const messagesEndRef = useRef(null);
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({
+        block: 'nearest',
+        inline: 'start',
+      });
+    }
+  }, [messagesEndRef.current]);
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({
@@ -25,7 +28,7 @@ const Messages = ({ chatId }) => {
 
   return (
     <div className="thin-scrollbar-y mt-2 h-[60vh] overflow-auto py-6 px-10">
-      <div className="flex flex-col justify-end">
+      <div ref={messageContainerRef} className="flex flex-col justify-end">
         {isLoading
           ? [...new Array(10)].map((_, i) => (
               <MessageSkeleton

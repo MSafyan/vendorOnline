@@ -9,6 +9,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginProvider from './contexts/LoginContext';
+import NotificationProvider from './contexts/NotificationContext';
 
 dayjs.extend(relativeTime);
 
@@ -20,11 +21,13 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <LoginProvider>
-            <Header />
-            <div className="flex flex-1 flex-col">
-              <Router />
-            </div>
-            <Footer />
+            <NotificationProvider>
+              <Header />
+              <div className="flex flex-1 flex-col">
+                <Router />
+              </div>
+              <Footer />
+            </NotificationProvider>
           </LoginProvider>
         </BrowserRouter>
         <ToastContainer />

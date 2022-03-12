@@ -1,13 +1,23 @@
 import firstCharacter from '../../utils/firstCharacter';
 import dayjs from 'dayjs';
+import useQueryParams from '../../hooks/useQueryParams';
+import useNotifications from '../../hooks/useNotifications';
 
-const SidebarButton = ({ setActive, other, lastMessage, active }) => {
+const SidebarButton = ({ chatId, other, lastMessage }) => {
+  const [search, setSearch] = useQueryParams();
+  const { newMessageChats, readChat } = useNotifications();
+
+  const active = search.c === chatId;
+
   return (
     <button
-      className={`flex w-full items-center gap-2 py-2 px-3 text-left transition ${
+      className={`relative flex w-full items-center gap-2 py-2 px-3 text-left transition focus:outline-none focus:ring-1 focus:ring-primary-200 ${
         active ? 'bg-primary-500/10 ' : ''
       }`}
-      onClick={setActive}
+      onClick={() => {
+        setSearch({ c: chatId });
+        readChat(chatId);
+      }}
     >
       <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-sm font-bold text-gray-600">
         {other.profileImage ? (
@@ -35,6 +45,12 @@ const SidebarButton = ({ setActive, other, lastMessage, active }) => {
           </span>
         </div>
       </div>
+      {newMessageChats.find((c) => c === chatId) && (
+        <span className="absolute top-0 right-0 mt-2 mr-2 flex h-2 w-2">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-400 opacity-75"></span>
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-sky-500"></span>
+        </span>
+      )}
     </button>
   );
 };

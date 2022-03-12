@@ -1,5 +1,6 @@
 const Chat = require('../models/chat.model');
 const Message = require('../models/message.model');
+const { sendMessage } = require('../sockets/SocketManger');
 
 class ChatController {
   static async createChat(req, res) {
@@ -43,7 +44,9 @@ class ChatController {
           })
           .populate('sender')
           .populate('job');
-        chat.messages = [message];
+
+        // add last message key to chat object and set it to message and set chat back to chats
+        chats[i] = { ...chat.toJSON(), lastMessage: message };
       }
 
       res.status(200).json({
@@ -80,15 +83,22 @@ class ChatController {
 
   static async addTextMessage(req, res) {
     try {
-      const { text } = req.body;
+      const { receiverId, text } = req.body;
+
       const message = await Message.create({
         text,
         sender: req.user._id,
         chat: req.params.id,
       });
 
+      const populatedMessage = await Message.findById(message._id)
+        .populate('sender')
+        .populate('job');
+
+      sendMessage(receiverId, populatedMessage);
+
       res.status(201).json({
-        data: message,
+        data: populatedMessage,
       });
     } catch (error) {
       console.log(error);

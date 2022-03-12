@@ -43,6 +43,9 @@ class ChatValidations {
       }),
       body: yup.object().shape({
         text: yup.string().required('Text is required'),
+        receiverId: yup.string().test('ObjectId', 'Invalid id', (value) => {
+          return ObjectId.isValid(value);
+        }),
       }),
     });
   }
@@ -65,6 +68,9 @@ class ChatValidations {
             return ObjectId.isValid(value);
           })
           .required('Job is required'),
+        receiverId: yup.string().test('ObjectId', 'Invalid id', (value) => {
+          return ObjectId.isValid(value);
+        }),
       }),
     });
   }

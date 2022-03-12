@@ -17,8 +17,8 @@ class ChatApi extends BaseRoutes {
     return await this._get(`/${id}`);
   };
 
-  addTextMessage = async ({ id, text }) => {
-    return await this._post(`/${id}/text`, { text });
+  addTextMessage = async ({ id, text, receiverId }) => {
+    return await this._post(`/${id}/text`, { text, receiverId });
   };
 
   addReferenceMessage = async ({ id, text, job }) => {

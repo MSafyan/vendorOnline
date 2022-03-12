@@ -1,14 +1,35 @@
 import { useState, useEffect } from 'react';
 import AssignJob from './AssignJob';
+import { useMutation, useQueryClient } from 'react-query';
+import { ChatAPI } from '../../api';
 
-const ChatInput = ({ chatId, sendMessage, other }) => {
+const ChatInput = ({ chatId, other }) => {
   const [message, setMessage] = useState('');
+
+  const queryClient = useQueryClient();
+  const { mutate: sendMessage } = useMutation(ChatAPI.addTextMessage, {
+    onSuccess: (newMessage) => {
+      queryClient.setQueryData(['chat', chatId], (chat) => {
+        chat.messages = chat.messages.concat(newMessage);
+        return chat;
+      });
+
+      queryClient.setQueryData('chats', (chats) => {
+        chats.forEach((chat) => {
+          if (chat._id === chatId) {
+            chat.lastMessage = newMessage;
+          }
+        });
+        return chats;
+      });
+    },
+  });
 
   const onSubmit = (e) => {
     e.preventDefault();
 
     if (message.trim()) {
-      sendMessage(chatId, message);
+      sendMessage({ id: chatId, text: message, receiverId: other._id });
       setMessage('');
     }
   };

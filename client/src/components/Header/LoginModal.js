@@ -6,8 +6,6 @@ import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 // import FacebookIcon from '../../assets/icons/FacebookIcon';
 // import GoogleIcon from '../../assets/icons/GoogleIcon';
-import { useMutation } from 'react-query';
-import { AuthAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
 import useLoggedIn from '../../hooks/useLoggedIn';
 
@@ -23,19 +21,13 @@ const validationSchema = yup.object().shape({
 
 const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
   const [toOpenSignUp, setToOpenSignUp] = useState(false);
-  const { recheck } = useLoggedIn();
-
-  const { mutate: login, isLoading } = useMutation(AuthAPI.login, {
-    onSuccess: (data) => {
-      setIsOpen(false);
-      formik.resetForm();
-      localStorage.setItem('user', JSON.stringify(data.user));
-      recheck();
-    },
-  });
+  const { login, isLoginLoading: isLoading } = useLoggedIn();
 
   const onSubmit = (values) => {
-    login({ ...values });
+    login({ ...values }, () => {
+      setIsOpen(false);
+      formik.resetForm();
+    });
   };
 
   const formik = useFormik({

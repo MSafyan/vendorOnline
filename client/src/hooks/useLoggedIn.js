@@ -2,9 +2,10 @@ import { useContext } from 'react';
 import { LoginContext } from '../contexts/LoginContext';
 
 const useLoggedIn = () => {
-  const { isLoggedIn, logout, recheck, user } = useContext(LoginContext);
+  const { isLoginLoading, login, isLoggedIn, logout, recheck, user, socket } =
+    useContext(LoginContext);
 
-  return { isLoggedIn, logout, recheck, user };
+  return { isLoginLoading, login, isLoggedIn, logout, recheck, user, socket };
 };
 
 export default useLoggedIn;
