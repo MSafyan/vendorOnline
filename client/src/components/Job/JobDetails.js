@@ -46,7 +46,7 @@ const JobDetails = ({ job }) => {
         <div className="flex items-center gap-2 text-sm text-gray-800">
           <span className="font-medium">{currencyFormatter(job.budget)}</span>
           <div className="flex items-center gap-0.5 text-sm">
-            Reviews <Rating reviews={job.reviews || []} showLength />
+            Reviews <Rating reviews={job.createdBy?.reviews || []} showLength />
           </div>
         </div>
 
@@ -62,8 +62,10 @@ const JobDetails = ({ job }) => {
 
         <h5 className="mt-4 text-xs text-gray-600">{job.company}</h5>
 
-        {isLoggedIn && user?._id === job.createdBy._id ? // <button
-        //   className="mt-6 w-full rounded-md bg-red-500 py-1.5 px-8 font-semibold text-white transition hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-red-500"
+        {isLoggedIn &&
+        user?._id ===
+          job.createdBy
+            ._id ? //   className="mt-6 w-full rounded-md bg-red-500 py-1.5 px-8 font-semibold text-white transition hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-red-500" // <button
         //   onClick={() => {
         //     createChat([user._id, job.createdBy._id]);
         //   }}

@@ -23,7 +23,6 @@ class JobController {
         .populate('category')
         .populate('createdBy')
         .populate('assignedTo')
-        .populate('reviews')
         .sort({ createdAt: -1 });
 
       if (page && limit) {
@@ -49,6 +48,7 @@ class JobController {
       const jobs = await jobsQuery.exec();
 
       // get all reviews of createdBy and put them in an array in createdBy
+      const jobsWithReviews = [];
       for (let i = 0; i < jobs.length; i++) {
         const job = jobs[i];
 
@@ -56,11 +56,17 @@ class JobController {
           reviewedTo: job.createdBy._id,
         });
 
-        job.createdBy.reviews = createdByReviews;
+        jobsWithReviews.push({
+          ...job.toJSON(),
+          createdBy: {
+            ...job.createdBy.toJSON(),
+            reviews: createdByReviews,
+          },
+        });
       }
 
       return res.status(200).json({
-        data: jobs.map((job) => job.toJSON()),
+        data: jobsWithReviews,
       });
     } catch (error) {
       console.log(error);
@@ -264,7 +270,9 @@ class JobController {
 
       const reviewedBy = req.user._id;
       const reviewedTo =
-        job.createdBy === req.user._id ? job.assignedTo : job.createdBy;
+        job.createdBy.toString() === req.user._id
+          ? job.assignedTo
+          : job.createdBy;
 
       if (
         job.reviews.find(

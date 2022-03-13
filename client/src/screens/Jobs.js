@@ -8,7 +8,7 @@ import useQueryParams from '../hooks/useQueryParams';
 const Jobs = () => {
   const [searchParams] = useQueryParams();
   const { data: jobs, isLoading } = useQuery(
-    ['jobs', { search: searchParams }],
+    searchParams?.q ? ['jobs', { search: searchParams.q }] : 'jobs',
     () =>
       JobAPI.getJobs({
         search: searchParams.q,

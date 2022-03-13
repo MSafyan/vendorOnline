@@ -30,7 +30,6 @@ const Review = ({ initialValue, chatId, message }) => {
 
         oldMessage.job.reviews.push(newReview);
 
-        console.log(oldMessage);
         return old;
       });
     },

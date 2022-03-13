@@ -36,7 +36,7 @@ const JobCard = ({ job }) => {
         <div className="flex items-center gap-2 font-medium text-gray-800">
           <span>{currencyFormatter(job.budget)}</span>
           <div className="flex items-center gap-0.5 text-sm">
-            Reviews <Rating reviews={job.reviews || []} />
+            Reviews <Rating reviews={job.createdBy?.reviews || []} />
           </div>
         </div>
         <h5 className="text-xs text-gray-600">{job.company}</h5>

@@ -27,17 +27,15 @@ const validationSchema = yup.object().shape({
 });
 
 const ProfileForm = () => {
-  const [profile, setProfile] = useState(null);
-
   const { recheck } = useLoggedIn();
 
   const queryClient = useQueryClient();
 
-  const { isLoading } = useQuery('profile', () => UserAPI.getProfile(), {
-    onSuccess: (data) => {
-      setProfile(data);
-    },
-  });
+  const { data: profile, isLoading } = useQuery(
+    'profile',
+    UserAPI.getProfile,
+    {}
+  );
 
   const { mutate: update, isLoading: isUpdating } = useMutation(
     'updateProfile',
@@ -46,7 +44,6 @@ const ProfileForm = () => {
       onSuccess: (data) => {
         queryClient.setQueryData('profile', data);
 
-        setProfile(data);
         localStorage.setItem(
           'user',
           JSON.stringify({
@@ -129,7 +126,7 @@ const ProfileForm = () => {
           <h4 className="text-xl font-medium">{profile?.name}</h4>
           <div className="flex items-center gap-1 text-xs font-medium">
             Reviews
-            <Rating reviews={[{ rating: 3 }]} showLength />
+            <Rating reviews={profile?.reviews || []} showLength />
           </div>
           <p className="text-xs font-medium">Member since Mar 2021</p>
         </div>
