@@ -70,7 +70,13 @@ class JobValidations {
             return ObjectId.isValid(value);
           }),
         company: yup.string(),
-        location: yup.string().required('Location is required'),
+        location: yup
+          .object()
+          .shape({
+            lat: yup.number().required('Location is required'),
+            lng: yup.number().required('Location is required'),
+          })
+          .required('Location is required'),
         budget: yup.string().required('Budget is required'),
         images: yup.array().of(yup.mixed()),
       }),
@@ -95,7 +101,7 @@ class JobValidations {
           return ObjectId.isValid(value);
         }),
         company: yup.string(),
-        location: yup.string(),
+        location: yup.object(),
         budget: yup.string(),
         images: yup.array().of(yup.mixed()),
         status: yup

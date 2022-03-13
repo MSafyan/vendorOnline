@@ -48,6 +48,17 @@ class JobController {
 
       const jobs = await jobsQuery.exec();
 
+      // get all reviews of createdBy and put them in an array in createdBy
+      for (let i = 0; i < jobs.length; i++) {
+        const job = jobs[i];
+
+        const createdByReviews = await Review.find({
+          reviewedTo: job.createdBy._id,
+        });
+
+        job.createdBy.reviews = createdByReviews;
+      }
+
       return res.status(200).json({
         data: jobs.map((job) => job.toJSON()),
       });

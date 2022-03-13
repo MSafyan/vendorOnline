@@ -51,8 +51,9 @@ const JobDetails = ({ job }) => {
         </div>
 
         <p className="mt-3 text-sm text-gray-700">
-          Posted {dayjs(job.createdAt).fromNow()} in{' '}
-          <span className="text-gray-800">{job.location}</span>
+          Posted {dayjs(job.createdAt).fromNow()}
+          {/* in{' '}
+          <span className="text-gray-800">{job.location}</span> */}
         </p>
 
         <p className="mt-3 text-sm leading-4 text-gray-700">
@@ -61,7 +62,23 @@ const JobDetails = ({ job }) => {
 
         <h5 className="mt-4 text-xs text-gray-600">{job.company}</h5>
 
-        {isLoggedIn && user?._id === job.createdBy._id ? null : (
+        {isLoggedIn && user?._id === job.createdBy._id ? // <button
+        //   className="mt-6 w-full rounded-md bg-red-500 py-1.5 px-8 font-semibold text-white transition hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-red-500"
+        //   onClick={() => {
+        //     createChat([user._id, job.createdBy._id]);
+        //   }}
+        //   disabled={!isLoggedIn || isLoading || job.status === 'assigned'}
+        //   title={!isLoggedIn ? 'You must be logged in to chat' : ''}
+        // >
+        //   {isLoading ? (
+        //     <LoaderIcon />
+        //   ) : job.status === 'assigned' ? (
+        //     'Already assigned!'
+        //   ) : (
+        //     'Message'
+        //   )}
+        // </button>
+        null : (
           <button
             className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:opacity-50 disabled:hover:bg-primary-500"
             onClick={() => {

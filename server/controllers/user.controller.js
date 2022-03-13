@@ -1,4 +1,5 @@
 const User = require('../models/user.model');
+const Review = require('../models/review.model');
 const removeFiles = require('../utils/removeFiles');
 const uploadFiles = require('../utils/uploadFiles');
 

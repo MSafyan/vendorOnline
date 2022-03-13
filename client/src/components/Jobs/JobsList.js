@@ -1,22 +1,9 @@
 import JobCard from './JobCard';
 import SkeletonCard from './SkeletonCard';
 // import jobs from './jobs';
-import { useQuery } from 'react-query';
-import { JobAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
-import useQueryParams from '../../hooks/useQueryParams';
 
-const JobsList = () => {
-  const [searchParams] = useQueryParams();
-  const { data: jobs, isLoading } = useQuery(
-    ['jobs', { search: searchParams }],
-    () =>
-      JobAPI.getJobs({
-        search: searchParams.q,
-        status: 'active,cancelled,assigned',
-      })
-  );
-
+const JobsList = ({ jobs, isLoading }) => {
   return (
     <div className="px-4 py-6">
       <div className="flex gap-3 px-4 text-center">

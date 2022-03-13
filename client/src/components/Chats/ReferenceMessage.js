@@ -211,18 +211,17 @@ const ReferenceMessage = forwardRef(({ message, self, other }, ref) => {
                 </button>
               </div>
             )}
-            {message.job.status === 'completed' ||
-              (message.job.status === 'closed' &&
-                message.referenceType === 'positive' && (
-                  <Review
-                    initialValue={message.job.reviews?.find((review) => {
-                      console.log(review.reviewedBy, user._id);
-                      return review.reviewedBy === user._id;
-                    })}
-                    chatId={message.chat}
-                    message={message}
-                  />
-                ))}
+            {(message.job.status === 'completed' ||
+              message.job.status === 'closed') &&
+              message.referenceType === 'positive' && (
+                <Review
+                  initialValue={message.job.reviews?.find((review) => {
+                    return review.reviewedBy === user._id;
+                  })}
+                  chatId={message.chat}
+                  message={message}
+                />
+              )}
           </div>
         </div>
         <span className="mt-1 text-xxs text-gray-700">

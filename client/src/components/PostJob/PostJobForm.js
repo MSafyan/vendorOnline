@@ -5,6 +5,7 @@ import { CameraIcon } from '@heroicons/react/outline';
 import { useMutation, useQueryClient } from 'react-query';
 import { JobAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
+import LocationInput from './LocationInput';
 
 const MAX_IMAGES = 4;
 
@@ -21,7 +22,13 @@ const initialValues = {
 const validationSchema = yup.object().shape({
   title: yup.string().required('Title is required'),
   company: yup.string().required('Company is required'),
-  location: yup.string().required('Location is required'),
+  location: yup
+    .object()
+    .shape({
+      lat: yup.number().required('Location is required'),
+      lng: yup.number().required('Location is required'),
+    })
+    .required('Location is required'),
   budget: yup.string().required('Budget is required'),
   description: yup
     .string()
@@ -60,7 +67,7 @@ const PostJobForm = () => {
 
     formData.append('title', values.title);
     formData.append('company', values.company);
-    formData.append('location', values.location);
+    formData.append('location', JSON.stringify(values.location));
     formData.append('budget', values.budget);
     formData.append('description', values.description);
     formData.append('category', values.category);
@@ -122,7 +129,7 @@ const PostJobForm = () => {
           )}
         </div>
 
-        <div>
+        {/* <div>
           <label htmlFor="location" className="font-medium">
             Location
           </label>
@@ -138,7 +145,19 @@ const PostJobForm = () => {
               * {formik.errors.location}
             </div>
           )}
-        </div>
+        </div> */}
+        <LocationInput
+          value={formik.values.location}
+          onChange={(value) => formik.setFieldValue('location', value)}
+          onBlur={() => formik.setFieldTouched('location', true)}
+          error={
+            formik.touched.location &&
+            (formik.errors.location ||
+              formik.errors.location?.lat ||
+              formik.errors.location?.lng) &&
+            'Location is required'
+          }
+        />
 
         <div>
           <label htmlFor="budget" className="font-medium">
