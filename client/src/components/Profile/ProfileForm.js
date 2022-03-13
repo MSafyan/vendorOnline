@@ -88,7 +88,7 @@ const ProfileForm = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="relative mt-3 grid grid-cols-2 gap-x-16 gap-y-4 px-4 py-3"
+      className="relative mt-3 grid grid-cols-1 gap-x-16 gap-y-4 px-4 py-3 md:grid-cols-2"
     >
       {/* overlay */}
       {isLoading && (
@@ -97,10 +97,10 @@ const ProfileForm = () => {
         </div>
       )}
 
-      <div className="col-span-2 flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2 sm:gap-4 md:col-span-2">
         {/* profile pic */}
-        <div className="relative flex h-28 w-28 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full border-2 border-gray-600 text-gray-500">
-          <CameraIcon className="h-12 w-12" />
+        <div className="relative flex h-24 w-24 flex-shrink-0 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-full border-2 border-gray-600 text-gray-500 sm:h-28 sm:w-28">
+          <CameraIcon className="h-10 w-10 sm:h-12 sm:w-12" />
           <span className="text-xs font-bold">Add Photo</span>
           {(profile?.profileImage || formik.values.profileImage) && (
             <img
@@ -214,7 +214,7 @@ const ProfileForm = () => {
           <textarea
             id="bio"
             placeholder="Write your bio"
-            className="mt-0.5 w-full flex-1 resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
+            className="mt-0.5 min-h-[8rem] w-full flex-1 resize-none rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
             {...formik.getFieldProps('bio')}
           />
           {formik.touched.bio && formik.errors.bio && (
@@ -225,7 +225,7 @@ const ProfileForm = () => {
         </div>
       </div>
 
-      <div className="col-span-2 mt-2 text-center">
+      <div className="mt-2 text-center md:col-span-2">
         <button
           className=" rounded-xl bg-primary-500 py-1 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:bg-gray-400"
           type="submit"

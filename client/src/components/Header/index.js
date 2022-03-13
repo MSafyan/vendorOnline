@@ -15,7 +15,7 @@ const Header = () => {
   const { activePage } = useActivePage();
 
   return (
-    <header className="sticky top-0 w-full border-b-2 border-primary-600 bg-white py-3 px-8 shadow-md shadow-primary-300/10 md:px-12 lg:px-20">
+    <header className="sticky top-0 z-40 w-full border-b-2 border-primary-600 bg-white py-3 px-8 shadow-md shadow-primary-300/10 md:px-12 lg:px-20">
       <div className="grid w-full grid-cols-2 lg:grid-cols-3">
         <nav className="hidden items-center lg:flex">
           <ul className="flex gap-10 text-sm lg:gap-16">

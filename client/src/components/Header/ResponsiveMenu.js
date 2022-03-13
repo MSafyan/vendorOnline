@@ -23,7 +23,7 @@ const ResponsiveMenu = ({ setIsLoginModalOpen, setIsSignupModalOpen }) => {
         leaveFrom="transform scale-100 opacity-100"
         leaveTo="transform scale-95 opacity-0"
       >
-        <Menu.Items className="absolute -right-4 z-30 mt-10 w-64 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:right-0 sm:w-80">
+        <Menu.Items className="absolute -right-4 z-[3000] mt-10 w-64 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:right-0 sm:w-80">
           <div className="flex flex-col px-3 py-2">
             <Menu.Item>
               <Link

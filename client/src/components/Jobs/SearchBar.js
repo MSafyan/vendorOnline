@@ -14,10 +14,10 @@ const SearchBar = () => {
   return (
     <div className="border-b-2 border-gray-400 p-4 shadow-md shadow-gray-400/10">
       <div className="mx-auto flex max-w-4xl items-center gap-6">
-        <form className="relative flex-1" onSubmit={handleSubmit}>
+        <form className="relative z-0 flex-1" onSubmit={handleSubmit}>
           <input
             type="text"
-            className="w-full rounded-lg border-gray-400/80 py-2 pl-4 pr-16 text-sm focus:border-primary-500 focus:ring-primary-500"
+            className="z-0 w-full rounded-lg border-gray-400/80 py-2 pl-4 pr-16 text-sm focus:border-primary-500 focus:ring-primary-500"
             placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
