@@ -21,7 +21,7 @@ const ChatWindow = () => {
 
   return (
     <div className="h-full bg-gray-50">
-      <div className="flex w-full items-center justify-between gap-4 bg-primary-400 px-4 py-2">
+      <div className="flex h-14 w-full items-center justify-between gap-4 bg-primary-400 px-4 py-2">
         <div className="flex items-center gap-4">
           {other && (
             <>

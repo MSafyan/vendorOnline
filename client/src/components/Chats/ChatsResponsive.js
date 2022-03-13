@@ -31,7 +31,10 @@ const ChatsResponsive = () => {
   }, []);
 
   return (
-    <Menu as="div" className="relative flex items-center justify-end ">
+    <Menu
+      as="div"
+      className="relative flex items-center justify-end md:hidden "
+    >
       <Menu.Button>
         <ChatAlt2Icon className="h-6 w-6 text-white" />
       </Menu.Button>
