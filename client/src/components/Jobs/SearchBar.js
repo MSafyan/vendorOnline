@@ -12,8 +12,8 @@ const SearchBar = () => {
   }
 
   return (
-    <div className="border-b-2 border-gray-400 p-4 shadow-md shadow-gray-400/10">
-      <div className="mx-auto flex max-w-4xl items-center gap-6">
+    <div className="w-full border-b-2 border-gray-400 p-4 shadow-md shadow-gray-400/10">
+      <div className="mx-auto flex items-center gap-6 px-4 sm:px-10 md:max-w-xl lg:max-w-4xl">
         <form className="relative z-0 flex-1" onSubmit={handleSubmit}>
           <input
             type="text"
@@ -27,7 +27,7 @@ const SearchBar = () => {
           </button>
         </form>
         <button
-          className="rounded-md bg-primary-500 px-8 py-1 text-lg text-white transition hover:bg-primary-600"
+          className="hidden rounded-md bg-primary-500 px-8 py-1 text-lg text-white transition hover:bg-primary-600 md:block"
           onClick={handleSubmit}
         >
           Search

@@ -50,7 +50,7 @@ const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
     >
       <Dialog
         onClose={() => setIsOpen(false)}
-        className="fixed inset-0 flex items-center justify-center"
+        className="fixed inset-0 z-50 flex items-center justify-center"
       >
         <Transition.Child
           enter="transition-opacity duration-150"
