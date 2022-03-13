@@ -18,6 +18,9 @@ module.exports = {
       fontSize: {
         xxs: '.625rem',
       },
+      screens: {
+        xs: '480px',
+      },
     },
   },
   plugins: [require('@tailwindcss/forms')],

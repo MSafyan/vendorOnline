@@ -90,9 +90,9 @@ const PostJobForm = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="mt-6 grid grid-cols-12 gap-x-14 gap-y-4 "
+      className="mt-6 grid grid-cols-1 gap-x-14 gap-y-4 md:grid-cols-12 "
     >
-      <div className="col-span-5 space-y-4">
+      <div className="space-y-4 md:col-span-5">
         <div>
           <label htmlFor="title" className="font-medium">
             Job Title
@@ -129,23 +129,6 @@ const PostJobForm = () => {
           )}
         </div>
 
-        {/* <div>
-          <label htmlFor="location" className="font-medium">
-            Location
-          </label>
-          <input
-            id="location"
-            type="text"
-            placeholder="Eg San Francisco, CA"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
-            {...formik.getFieldProps('location')}
-          />
-          {formik.touched.location && formik.errors.location && (
-            <div className="mt-1 text-xs text-red-600">
-              * {formik.errors.location}
-            </div>
-          )}
-        </div> */}
         <LocationInput
           value={formik.values.location}
           onChange={(value) => formik.setFieldValue('location', value)}
@@ -196,7 +179,7 @@ const PostJobForm = () => {
           )}
         </div>
       </div>
-      <div className="col-span-7">
+      <div className=" md:col-span-7">
         <h4 className="font-medium">Category</h4>
         <CategoryDisclosure
           selected={formik.values.category}
@@ -204,7 +187,7 @@ const PostJobForm = () => {
           error={formik.touched.category && formik.errors.category}
         />
         <h4 className="mt-4 font-medium">Attached Images</h4>
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className="mt-6 flex flex-wrap justify-center gap-2 xs:justify-start">
           {[...new Array(MAX_IMAGES)].map((_, index) => (
             <div
               key={index}
@@ -241,7 +224,7 @@ const PostJobForm = () => {
         </div>
       </div>
 
-      <div className="col-span-12">
+      <div className="md:col-span-12">
         <button
           className="rounded-xl bg-primary-500 py-1 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:bg-gray-400"
           type="submit"
