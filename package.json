@@ -1,12 +1,10 @@
 {
   "scripts": {
     "build": "cd client && npm run build && cd ..",
-    "install-client": "cd client && npm install && cd ..",
     "install-server": "cd server && npm install && cd ..",
-    "heroku-postbuild": "npm run install-server && npm run install-client && npm run build",
+    "heroku-postbuild": "npm run install-server && npm run build",
     "server": "node server/app.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "npm i concurrently && concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "start": "npm run server"
   },
   "engines": {
     "node": "16.13.2"
