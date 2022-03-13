@@ -242,10 +242,11 @@ class JobController {
       });
 
       const job = await Job.findByIdAndUpdate(req.params.id, {
-        isDeleted: true,
+        status: Status.Deleted,
       });
 
       return res.status(200).json({
+        message: 'Job deleted!',
         data: job.toJSON(),
       });
     } catch (error) {

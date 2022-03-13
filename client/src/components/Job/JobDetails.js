@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import firstCharacter from '../../utils/firstCharacter';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import { useMutation, useQueryClient } from 'react-query';
-import { ChatAPI } from '../../api';
+import { ChatAPI, JobAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
 
 const JobDetails = ({ job }) => {
@@ -38,6 +38,21 @@ const JobDetails = ({ job }) => {
     }
   );
 
+  const { mutate: deleteJob, isLoading: isDeletingJob } = useMutation(
+    () => JobAPI.deleteJob(job._id),
+    {
+      onSuccess: (removedJob) => {
+        queryClient.setQueryData('jobs', (old) => {
+          if (!old) return [];
+
+          return old.filter((job) => job._id === removedJob._id);
+        });
+
+        navigate('/jobs');
+      },
+    }
+  );
+
   return (
     <div className="w-full rounded bg-gray-100 px-6 py-10">
       {/* info section */}
@@ -62,25 +77,17 @@ const JobDetails = ({ job }) => {
 
         <h5 className="mt-4 text-xs text-gray-600">{job.company}</h5>
 
-        {isLoggedIn &&
-        user?._id ===
-          job.createdBy
-            ._id ? //   className="mt-6 w-full rounded-md bg-red-500 py-1.5 px-8 font-semibold text-white transition hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-red-500" // <button
-        //   onClick={() => {
-        //     createChat([user._id, job.createdBy._id]);
-        //   }}
-        //   disabled={!isLoggedIn || isLoading || job.status === 'assigned'}
-        //   title={!isLoggedIn ? 'You must be logged in to chat' : ''}
-        // >
-        //   {isLoading ? (
-        //     <LoaderIcon />
-        //   ) : job.status === 'assigned' ? (
-        //     'Already assigned!'
-        //   ) : (
-        //     'Message'
-        //   )}
-        // </button>
-        null : (
+        {isLoggedIn && user?._id === job.createdBy._id ? (
+          <button
+            className="mt-6 w-full rounded-md bg-red-500 py-1.5 px-8 font-semibold text-white transition hover:bg-red-600 disabled:opacity-50 disabled:hover:bg-red-500"
+            onClick={() => {
+              deleteJob();
+            }}
+            disabled={!isLoggedIn || isDeletingJob || job.status === 'assigned'}
+          >
+            {isDeletingJob ? <LoaderIcon /> : 'Delete'}
+          </button>
+        ) : (
           <button
             className="mt-6 w-full rounded-md bg-primary-500 py-1.5 px-8 font-semibold text-white transition hover:bg-primary-600 disabled:opacity-50 disabled:hover:bg-primary-500"
             onClick={() => {
