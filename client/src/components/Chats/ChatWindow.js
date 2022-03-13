@@ -6,6 +6,7 @@ import { useQuery } from 'react-query';
 import { ChatAPI } from '../../api';
 import useQueryParams from '../../hooks/useQueryParams';
 import ChatWindowTopBarSkeleton from './ChatWindowTopBarSkeleton';
+import ChatsResponsive from './ChatsResponsive';
 
 const ChatWindow = () => {
   const { user } = useLoggedIn();
@@ -20,12 +21,10 @@ const ChatWindow = () => {
 
   return (
     <div className="h-full bg-gray-50">
-      {chatId && (
-        <>
-          {isLoading ? (
-            <ChatWindowTopBarSkeleton />
-          ) : (
-            <div className="flex w-full items-center gap-4 bg-primary-400 p-2">
+      <div className="flex w-full items-center justify-between gap-4 bg-primary-400 px-4 py-2">
+        <div className="flex items-center gap-4">
+          {other && (
+            <>
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-sm font-bold text-gray-600">
                 {other.profileImage ? (
                   <img
@@ -39,9 +38,14 @@ const ChatWindow = () => {
               </div>
 
               <h3 className="text-lg font-bold text-gray-50">{other.name}</h3>
-            </div>
+            </>
           )}
+        </div>
 
+        <ChatsResponsive />
+      </div>
+      {chatId && (
+        <>
           <Messages chat={chat} isLoading={isLoading} />
           <ChatInput chatId={chat?._id} other={other} />
         </>

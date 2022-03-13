@@ -29,7 +29,7 @@ const Messages = ({ chat, isLoading }) => {
   }, [chat?.messages, messagesEndRef.current]);
 
   return (
-    <div className="thin-scrollbar-y mt-2 h-[60vh] overflow-auto py-6 px-10">
+    <div className="thin-scrollbar-y mt-2 h-[60vh] overflow-auto py-6 px-4 sm:px-10">
       <div ref={messageContainerRef} className="flex flex-col justify-end">
         {isLoading
           ? [...new Array(10)].map((_, i) => (

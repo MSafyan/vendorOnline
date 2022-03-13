@@ -16,13 +16,13 @@ const Message = forwardRef(({ message, self, other }, ref) => {
     >
       <div className={`flex flex-col ${self ? 'items-end' : 'items-start'}`}>
         <div
-          className={`my-0.5 max-w-sm rounded-lg px-2 py-1 ${
+          className={`my-0.5 max-w-[14rem] rounded-lg px-2 py-1 sm:max-w-xs md:max-w-sm ${
             self
               ? 'rounded-tr-none bg-primary-500 font-medium text-white'
               : 'rounded-tl-none bg-gray-200'
           }`}
         >
-          <p>{message.text}</p>
+          <p className="text-sm sm:text-base">{message.text}</p>
         </div>
         <span className="text-xxs text-gray-700">
           {dayjs(message.createdAt).format('h:mm a')}

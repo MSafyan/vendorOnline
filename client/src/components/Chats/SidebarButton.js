@@ -2,16 +2,18 @@ import firstCharacter from '../../utils/firstCharacter';
 import dayjs from 'dayjs';
 import useQueryParams from '../../hooks/useQueryParams';
 import useNotifications from '../../hooks/useNotifications';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 
 const SidebarButton = ({ chatId, other, lastMessage }) => {
   const [search, setSearch] = useQueryParams();
   const { newMessageChats, readChat } = useNotifications();
+  const { width } = useWindowDimensions();
 
   const active = search.c === chatId;
 
   return (
     <button
-      className={`relative flex w-full items-center gap-2 py-2 px-3 text-left transition focus:outline-none focus:ring-1 focus:ring-primary-200 ${
+      className={`relative flex w-full items-center justify-center gap-2 py-2 px-3 text-left transition focus:outline-none focus:ring-1 focus:ring-primary-200 ${
         active ? 'bg-primary-500/10 ' : ''
       }`}
       onClick={() => {
@@ -30,12 +32,12 @@ const SidebarButton = ({ chatId, other, lastMessage }) => {
           firstCharacter(other.name)
         )}
       </div>
-      <div className="flex flex-1 flex-col justify-center">
+      <div className=" flex flex-1 flex-col justify-center">
         <h3 className="text-sm">{other.name}</h3>
         <div className="flex items-baseline">
           <p className="flex-1 truncate text-xs text-gray-600">
             {lastMessage?.text?.length > 25
-              ? lastMessage.text.substring(0, 25) + '...'
+              ? lastMessage.text.substring(0, width < 1024 ? 10 : 25) + '...'
               : lastMessage.text}
           </p>
           <span className="text-xxs text-gray-500 ">

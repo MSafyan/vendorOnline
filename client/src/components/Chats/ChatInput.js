@@ -39,7 +39,7 @@ const ChatInput = ({ chatId, other }) => {
   }, [chatId]);
 
   return (
-    <form className="relative my-2 px-10" onSubmit={onSubmit}>
+    <form className="relative my-2 px-4 sm:px-10" onSubmit={onSubmit}>
       <input
         type="text"
         placeholder="Type a message..."
@@ -47,7 +47,7 @@ const ChatInput = ({ chatId, other }) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
-      <div className="absolute right-0 top-1/2 mr-12 flex -translate-y-1/2 items-center gap-3">
+      <div className="absolute right-0 top-1/2 mr-6 flex -translate-y-1/2 items-center gap-3 sm:mr-12">
         <AssignJob assignTo={other} chatId={chatId} />
 
         <button

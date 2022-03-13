@@ -57,7 +57,7 @@ const Review = ({ initialValue, chatId, message }) => {
   }, [initialValue]);
 
   return (
-    <form className="mt-3" onSubmit={formik.handleSubmit}>
+    <form className="mt-3 text-sm sm:text-base" onSubmit={formik.handleSubmit}>
       <h5 className="font-bold">Review:</h5>
       <RatingInput
         value={formik.values.rating}

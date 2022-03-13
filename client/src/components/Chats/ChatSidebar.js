@@ -30,7 +30,7 @@ const ChatSidebar = () => {
   return (
     <aside className="h-full bg-gray-100">
       <div className="mb-2 flex h-14 w-full items-center bg-primary-500 py-2 px-4 text-lg font-bold text-white">
-        Chats
+        <span className="hidden sm:block">Chats</span>
       </div>
 
       <div className="thin-scrollbar-y h-[70vh] overflow-y-auto">

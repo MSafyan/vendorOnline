@@ -174,7 +174,7 @@ const ReferenceMessage = forwardRef(({ message, self, other }, ref) => {
     >
       <div className={`flex flex-col ${self ? 'items-end' : 'items-start'}`}>
         <div
-          className={`flex items-center justify-center gap-5 rounded-lg py-4 px-8 ${
+          className={`flex items-center justify-center gap-3 rounded-lg py-4 px-4 sm:gap-5 sm:px-8 ${
             message.referenceType === 'negative'
               ? 'bg-red-400/30 text-red-800/80'
               : message.referenceType === 'positive'
@@ -182,8 +182,8 @@ const ReferenceMessage = forwardRef(({ message, self, other }, ref) => {
               : 'bg-blue-400/30 text-blue-800/80'
           }`}
         >
-          <div className="self-start">
-            <BriefcaseIcon className="h-12 w-12" />
+          <div className="hidden self-start xs:block">
+            <BriefcaseIcon className="h-8 w-8 xs:h-12 xs:w-12" />
           </div>
           <div
             className={`flex flex-col ${

@@ -63,6 +63,10 @@ const ChatButton = () => {
     }
   }, [socket]);
 
+  if (inChat) {
+    return null;
+  }
+
   return (
     <Link to="/chats" className="relative mr-4 flex items-center" title="Chat">
       <ChatAlt2Icon className="h-6 w-6 text-primary-500" />
