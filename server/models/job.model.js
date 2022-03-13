@@ -57,6 +57,7 @@ const JobSchema = new mongoose.Schema(
         'assigned',
         'completed',
         'cancelled',
+        'closed',
         'deleted',
       ],
       default: 'active',
@@ -90,26 +91,12 @@ const JobSchema = new mongoose.Schema(
     deletedAt: {
       type: Date,
     },
-    isActive: {
-      type: Boolean,
-      default: true,
-    },
-    isAssigned: {
-      type: Boolean,
-      default: false,
-    },
-    isCompleted: {
-      type: Boolean,
-      default: false,
-    },
-    isCanceled: {
-      type: Boolean,
-      default: false,
-    },
-    isDeleted: {
-      type: Boolean,
-      default: false,
-    },
+    reviews: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Review',
+      },
+    ],
   },
   {
     timestamps: true,

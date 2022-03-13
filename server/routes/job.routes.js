@@ -32,5 +32,10 @@ router.delete(
   [validateRequest(JobValidations.deleteJob()), requireUser()],
   JobController.deleteJob
 );
+router.post(
+  '/:id/review',
+  [validateRequest(JobValidations.reviewJob()), requireUser()],
+  JobController.reviewJob
+);
 
 module.exports = router;

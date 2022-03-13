@@ -9,7 +9,9 @@ const JobCard = ({ job }) => {
   return (
     <div
       className={`relative w-full cursor-pointer border border-b-4 border-gray-200 ${
-        job.status === 'active' ? 'border-b-primary-500' : 'border-b-blue-500'
+        job.status === 'active' || job.status === 'cancelled'
+          ? 'border-b-primary-500'
+          : 'border-b-blue-500'
       }  shadow`}
       onClick={() => navigate(`/jobs/${job._id}`)}
     >

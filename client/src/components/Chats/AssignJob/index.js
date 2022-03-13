@@ -9,7 +9,7 @@ import { Popover, Transition } from '@headlessui/react';
 const AssignJob = ({ assignTo, chatId }) => {
   const { user } = useLoggedIn();
   const { data: jobs, isLoading } = useQuery('ownActiveJobs', () =>
-    JobAPI.getJobs({ createdBy: user._id, status: 'active' })
+    JobAPI.getJobs({ createdBy: user._id, status: 'active,cancelled' })
   );
 
   return (

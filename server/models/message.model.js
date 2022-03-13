@@ -40,6 +40,11 @@ const MessageSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Job',
     },
+    referenceType: {
+      type: String,
+      enum: ['positive', 'negative', 'neutral'],
+      default: 'neutral',
+    },
     attachment: {
       type: String,
     },

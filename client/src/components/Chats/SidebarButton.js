@@ -19,7 +19,7 @@ const SidebarButton = ({ chatId, other, lastMessage }) => {
         readChat(chatId);
       }}
     >
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-300 text-sm font-bold text-gray-600">
+      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-gray-300 text-sm font-bold text-gray-600">
         {other.profileImage ? (
           <img
             src={other.profileImage}
@@ -34,7 +34,9 @@ const SidebarButton = ({ chatId, other, lastMessage }) => {
         <h3 className="text-sm">{other.name}</h3>
         <div className="flex items-baseline">
           <p className="flex-1 truncate text-xs text-gray-600">
-            {lastMessage?.text}
+            {lastMessage?.text?.length > 25
+              ? lastMessage.text.substring(0, 25) + '...'
+              : lastMessage.text}
           </p>
           <span className="text-xxs text-gray-500 ">
             {lastMessage?.createdAt

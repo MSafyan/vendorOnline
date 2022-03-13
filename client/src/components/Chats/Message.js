@@ -2,9 +2,11 @@ import { forwardRef } from 'react';
 import dayjs from 'dayjs';
 import ReferenceMessage from './ReferenceMessage';
 
-const Message = forwardRef(({ message, self }, ref) => {
+const Message = forwardRef(({ message, self, other }, ref) => {
   if (message.type === 'reference') {
-    return <ReferenceMessage message={message} ref={ref} self={self} />;
+    return (
+      <ReferenceMessage message={message} ref={ref} self={self} other={other} />
+    );
   }
 
   return (

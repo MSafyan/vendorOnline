@@ -10,7 +10,11 @@ const JobsList = () => {
   const [searchParams] = useQueryParams();
   const { data: jobs, isLoading } = useQuery(
     ['jobs', { search: searchParams }],
-    () => JobAPI.getJobs({ search: searchParams.q })
+    () =>
+      JobAPI.getJobs({
+        search: searchParams.q,
+        status: 'active,cancelled,assigned',
+      })
   );
 
   return (

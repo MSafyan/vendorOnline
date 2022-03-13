@@ -1,5 +1,15 @@
 import BaseRoutes from './BaseRoutes';
 
+const Status = {
+  Active: 'active',
+  Inactive: 'inactive',
+  Assigned: 'assigned',
+  Completed: 'completed',
+  Canceled: 'cancelled',
+  Closed: 'closed',
+  Deleted: 'deleted',
+};
+
 class JobAPI extends BaseRoutes {
   constructor() {
     super('/jobs');
@@ -63,7 +73,7 @@ class JobAPI extends BaseRoutes {
   assignJob = async (id, assignedTo) => {
     const res = await this._put(`/${id}`, {
       assignedTo,
-      isAssigned: true,
+      status: Status.Assigned,
     });
 
     return res;
@@ -71,7 +81,7 @@ class JobAPI extends BaseRoutes {
 
   completeJob = async (id) => {
     const res = await this._put(`/${id}`, {
-      isCompleted: true,
+      status: Status.Completed,
     });
 
     return res;
@@ -79,7 +89,7 @@ class JobAPI extends BaseRoutes {
 
   cancelJob = async (id) => {
     const res = await this._put(`/${id}`, {
-      isCancelled: true,
+      status: Status.Canceled,
     });
 
     return res;
@@ -95,6 +105,12 @@ class JobAPI extends BaseRoutes {
 
   deleteJob = async (id) => {
     const res = await this._remove(`/${id}`);
+
+    return res;
+  };
+
+  reviewJob = async ({ id, rating, comment }) => {
+    const res = await this._post(`/${id}/review`, { rating, comment });
 
     return res;
   };

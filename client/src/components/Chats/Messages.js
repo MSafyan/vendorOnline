@@ -6,6 +6,8 @@ import useLoggedIn from '../../hooks/useLoggedIn';
 const Messages = ({ chat, isLoading }) => {
   const { user } = useLoggedIn();
 
+  const other = chat?.users?.find((u) => u._id !== user?._id);
+
   const messageContainerRef = useRef();
   const messagesEndRef = useRef(null);
   useEffect(() => {
@@ -41,6 +43,7 @@ const Messages = ({ chat, isLoading }) => {
                 message={message}
                 key={index}
                 self={message.sender._id === user?._id}
+                other={other}
                 ref={index === chat.messages.length - 1 ? messagesEndRef : null}
               />
             ))}

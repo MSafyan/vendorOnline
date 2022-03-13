@@ -66,7 +66,12 @@ class ChatController {
 
       const messages = await Message.find({ chat: chat._id })
         .populate('sender')
-        .populate('job');
+        .populate({
+          path: 'job',
+          populate: {
+            path: 'reviews',
+          },
+        });
 
       const chatWithMessages = { ...chat.toJSON(), messages };
 
@@ -110,18 +115,22 @@ class ChatController {
 
   static async addReferenceMessage(req, res) {
     try {
-      const { text, job } = req.body;
+      const { text, job, referenceType, receiverId } = req.body;
+
       const message = await Message.create({
         text,
         sender: req.user._id,
         chat: req.params.id,
         job,
         type: 'reference',
+        referenceType,
       });
 
       const populatedMessage = await Message.findById(message._id)
         .populate('sender')
         .populate('job');
+
+      sendMessage(receiverId, populatedMessage);
 
       res.status(201).json({
         data: populatedMessage,

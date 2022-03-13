@@ -67,10 +67,16 @@ const JobDetails = ({ job }) => {
             onClick={() => {
               createChat([user._id, job.createdBy._id]);
             }}
-            disabled={!isLoggedIn || isLoading}
+            disabled={!isLoggedIn || isLoading || job.status === 'assigned'}
             title={!isLoggedIn ? 'You must be logged in to chat' : ''}
           >
-            {isLoading ? <LoaderIcon /> : 'Message'}
+            {isLoading ? (
+              <LoaderIcon />
+            ) : job.status === 'assigned' ? (
+              'Already assigned!'
+            ) : (
+              'Message'
+            )}
           </button>
         )}
       </div>
@@ -85,7 +91,7 @@ const JobDetails = ({ job }) => {
               className="h-full w-full object-cover"
             />
           ) : (
-            firstCharacter(job.createdBy.name)
+            firstCharacter(job?.createdBy?.name || '')
           )}
         </div>
         <div className="flex flex-col justify-center">

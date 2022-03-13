@@ -9,15 +9,30 @@ class JobValidations {
         limit: yup.number().integer().min(1).nullable(),
         status: yup
           .string()
-          .oneOf([
-            'active',
-            'inactive',
-            'assigned',
-            'completed',
-            'cancelled',
-            'deleted',
-          ])
-          .nullable(),
+          // .oneOf([
+          //   'active',
+          //   'inactive',
+          //   'assigned',
+          //   'completed',
+          //   'cancelled',
+          //   'deleted',
+          // ])
+          // any of above with comma seperated
+          .test('statuses', 'Invalid status', (value) => {
+            if (!value) return true;
+
+            const statuses = [
+              'active',
+              'inactive',
+              'assigned',
+              'completed',
+              'cancelled',
+              'closed',
+              'deleted',
+            ];
+
+            return value.split(',').every((item) => statuses.includes(item));
+          }),
         search: yup.string().nullable(),
         createdBy: yup
           .string()
@@ -83,11 +98,21 @@ class JobValidations {
         location: yup.string(),
         budget: yup.string(),
         images: yup.array().of(yup.mixed()),
-        isActive: yup.boolean(),
-        isAssigned: yup.boolean(),
-        isCompleted: yup.boolean(),
-        isCanceled: yup.boolean(),
-        isDeleted: yup.boolean(),
+        status: yup
+          .string()
+          .oneOf([
+            'active',
+            'inactive',
+            'assigned',
+            'completed',
+            'cancelled',
+            'closed',
+            'deleted',
+          ]),
+        assignedTo: yup.string().test('ObjectId', 'Invalid id', (value) => {
+          if (!value) return true;
+          return ObjectId.isValid(value);
+        }),
       }),
     });
   }
@@ -101,6 +126,28 @@ class JobValidations {
           .test('ObjectId', 'Invalid id', (value) => {
             return ObjectId.isValid(value);
           }),
+      }),
+    });
+  }
+
+  static reviewJob() {
+    return yup.object().shape({
+      params: yup.object().shape({
+        id: yup
+          .string()
+          .required()
+          .test('ObjectId', 'Invalid id', (value) => {
+            return ObjectId.isValid(value);
+          }),
+      }),
+      body: yup.object().shape({
+        rating: yup
+          .number()
+          .integer()
+          .min(1, 'Rating must be between 1 and 5')
+          .max(5, 'Rating must be between 1 and 5')
+          .required('Rating is required'),
+        comment: yup.string(),
       }),
     });
   }
