@@ -6,6 +6,7 @@ import LoginModal from './LoginModal';
 import SignupModal from './SignupModal';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import ChatButton from './ChatButton';
+import ResponsiveMenu from './ResponsiveMenu';
 
 const Header = () => {
   const { isLoggedIn, logout, user } = useLoggedIn();
@@ -14,9 +15,9 @@ const Header = () => {
   const { activePage } = useActivePage();
 
   return (
-    <header className="w-full border-b-2 border-primary-600 py-3 px-8 shadow-md shadow-primary-300/10 md:px-12 lg:px-20">
-      <div className="grid w-full grid-cols-3">
-        <nav className="flex items-center">
+    <header className="sticky top-0 w-full border-b-2 border-primary-600 bg-white py-3 px-8 shadow-md shadow-primary-300/10 md:px-12 lg:px-20">
+      <div className="grid w-full grid-cols-2 lg:grid-cols-3">
+        <nav className="hidden items-center lg:flex">
           <ul className="flex gap-10 text-sm lg:gap-16">
             <li>
               <Link
@@ -64,11 +65,11 @@ const Header = () => {
         </nav>
         <Link
           to="/"
-          className="text-center text-4xl font-semibold text-primary-500"
+          className="text-left text-2xl font-semibold text-primary-500 sm:text-3xl md:text-4xl lg:text-center"
         >
           Gigwaiting
         </Link>
-        <div className="flex items-center justify-end text-sm">
+        <div className="hidden items-center justify-end text-sm lg:flex">
           {isLoggedIn ? (
             <>
               <ChatButton />
@@ -106,7 +107,16 @@ const Header = () => {
             </>
           )}
         </div>
+
+        <div className="flex items-center justify-end lg:hidden">
+          <ChatButton />
+          <ResponsiveMenu
+            setIsLoginModalOpen={setIsLoginModalOpen}
+            setIsSignupModalOpen={setIsSignupModalOpen}
+          />
+        </div>
       </div>
+
       <LoginModal
         isOpen={isLoginModalOpen}
         setIsOpen={setIsLoginModalOpen}

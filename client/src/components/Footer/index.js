@@ -6,7 +6,7 @@ import TwitterIcon from '../../assets/icons/TwitterIcon';
 const Footer = () => {
   return (
     <footer className="bg-primary-500/10">
-      <section className="grid grid-cols-3 px-40 py-10">
+      <section className="grid grid-cols-1 gap-10 py-10 px-20 text-center sm:grid-cols-2 sm:text-left md:px-32 lg:grid-cols-3 lg:px-40">
         <div className="space-y-2">
           <Link
             to="/"
@@ -15,7 +15,7 @@ const Footer = () => {
             Gigwaiting
           </Link>
           <h6 className="text-lg font-medium">Follow Us</h6>
-          <div className="flex gap-4 text-gray-500">
+          <div className="flex justify-center gap-4 text-gray-500 sm:justify-start">
             <button className="transform hover:text-primary-600">
               <FacebookIcon className="h-4 w-4 " />
             </button>
@@ -53,7 +53,7 @@ const Footer = () => {
           <p className="text-gray-800">Email: gigwaiting@gmail.com</p>
         </div>
       </section>
-      <div className="bg-primary-500 p-4 text-center text-sm text-white">
+      <div className="bg-primary-500 p-4 text-center text-xs  text-white md:text-sm">
         COPYRIGHT © 2020 GIGWAITING. ALL RIGHTS RESERVED.
       </div>
     </footer>

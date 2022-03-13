@@ -71,7 +71,7 @@ const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
           leaveFrom="opacity-100 scale-100"
           leaveTo="opacity-0 scale-95"
         >
-          <div className="relative max-w-md space-y-3 rounded-md bg-white px-16 py-12 shadow-lg">
+          <div className="relative mx-1 max-w-md space-y-3 rounded-md bg-white px-10 py-12 shadow-lg sm:px-16">
             <button
               className="absolute top-0 right-0 my-3 mr-4 text-gray-600 transition hover:text-gray-800 focus:outline-none"
               onClick={() => setIsOpen(false)}
