@@ -15,8 +15,13 @@ const CategoryDisclosure = ({ selected, setSelected, error }) => {
       {isLoading ? (
         <LoaderIcon className="mx-auto h-16 w-16 text-primary-400" />
       ) : (
-        categories?.map((category) => (
-          <Disclosure key={category._id} as="div" className="mt-0.5">
+        categories?.map((category, index) => (
+          <Disclosure
+            defaultOpen={index === 0}
+            key={category._id}
+            as="div"
+            className="mt-0.5"
+          >
             {({ open }) => (
               <>
                 <Disclosure.Button className="flex w-full items-center justify-between rounded-md bg-primary-500 py-1 px-2 text-left text-white">

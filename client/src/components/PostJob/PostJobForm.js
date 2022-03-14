@@ -21,7 +21,7 @@ const initialValues = {
 
 const validationSchema = yup.object().shape({
   title: yup.string().required('Title is required'),
-  company: yup.string().required('Company is required'),
+  company: yup.string(),
   location: yup
     .object()
     .shape({
@@ -66,7 +66,9 @@ const PostJobForm = () => {
     const formData = new FormData();
 
     formData.append('title', values.title);
-    formData.append('company', values.company);
+    if (values.company) {
+      formData.append('company', values.company);
+    }
     formData.append('location', JSON.stringify(values.location));
     formData.append('budget', values.budget);
     formData.append('description', values.description);

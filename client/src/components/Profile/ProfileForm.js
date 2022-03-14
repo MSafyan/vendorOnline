@@ -60,11 +60,21 @@ const ProfileForm = () => {
   const onSubmit = (values) => {
     const formData = new FormData();
 
-    formData.append('name', values.name);
-    formData.append('company', values.company);
-    formData.append('companyLicense', values.companyLicense);
-    formData.append('companyWebsiteLink', values.companyWebsiteLink);
-    formData.append('bio', values.bio);
+    if (values.name) {
+      formData.append('name', values.name);
+    }
+    if (values.company) {
+      formData.append('company', values.company);
+    }
+    if (values.companyLicense) {
+      formData.append('companyLicense', values.companyLicense);
+    }
+    if (values.companyWebsiteLink) {
+      formData.append('companyWebsiteLink', values.companyWebsiteLink);
+    }
+    if (values.bio) {
+      formData.append('bio', values.bio);
+    }
     if (values.profileImage) {
       formData.append('profileImage', values.profileImage);
     }

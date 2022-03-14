@@ -1,215 +1,244 @@
 const Category = require('../models/category.model');
 
+// const categories = [
+//   {
+//     name: 'Handyman',
+//     subcategories: [
+//       {
+//         name: 'Plumber',
+//       },
+//       {
+//         name: 'Electrician',
+//       },
+//       {
+//         name: 'Carpenter',
+//       },
+//       {
+//         name: 'Maid',
+//       },
+//       {
+//         name: 'Cook',
+//       },
+//       {
+//         name: 'Janitor',
+//       },
+//       {
+//         name: 'Locksmith',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Beautician',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//     ],
+//   },
+//   {
+//     name: 'Moving Services',
+//     subcategories: [
+//       {
+//         name: 'Plumber',
+//       },
+//       {
+//         name: 'Electrician',
+//       },
+//       {
+//         name: 'Carpenter',
+//       },
+//       {
+//         name: 'Maid',
+//       },
+//       {
+//         name: 'Cook',
+//       },
+//       {
+//         name: 'Janitor',
+//       },
+//       {
+//         name: 'Locksmith',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Beautician',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//     ],
+//   },
+//   {
+//     name: 'Furniture Assembly',
+//     subcategories: [
+//       {
+//         name: 'Plumber',
+//       },
+//       {
+//         name: 'Electrician',
+//       },
+//       {
+//         name: 'Carpenter',
+//       },
+//       {
+//         name: 'Maid',
+//       },
+//       {
+//         name: 'Cook',
+//       },
+//       {
+//         name: 'Janitor',
+//       },
+//       {
+//         name: 'Locksmith',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Beautician',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//     ],
+//   },
+//   {
+//     name: 'Yardwork and Removal',
+//     subcategories: [
+//       {
+//         name: 'Plumber',
+//       },
+//       {
+//         name: 'Electrician',
+//       },
+//       {
+//         name: 'Carpenter',
+//       },
+//       {
+//         name: 'Maid',
+//       },
+//       {
+//         name: 'Cook',
+//       },
+//       {
+//         name: 'Janitor',
+//       },
+//       {
+//         name: 'Locksmith',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Beautician',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//       {
+//         name: 'Tutor',
+//       },
+//     ],
+//   },
+// ];
+
 const categories = [
   {
-    name: 'Handyman',
+    name: 'Select one',
     subcategories: [
       {
-        name: 'Plumber',
+        name: 'Moving Services',
       },
       {
-        name: 'Electrician',
+        name: 'Handyman',
       },
       {
-        name: 'Carpenter',
+        name: 'Cleaning',
       },
       {
-        name: 'Maid',
+        name: 'Furniture Assembly',
       },
       {
-        name: 'Cook',
+        name: 'Yardwork Services',
       },
       {
-        name: 'Janitor',
+        name: 'Junk Removal',
       },
       {
-        name: 'Locksmith',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Beautician',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-    ],
-  },
-  {
-    name: 'Moving Services',
-    subcategories: [
-      {
-        name: 'Plumber',
-      },
-      {
-        name: 'Electrician',
-      },
-      {
-        name: 'Carpenter',
-      },
-      {
-        name: 'Maid',
-      },
-      {
-        name: 'Cook',
-      },
-      {
-        name: 'Janitor',
-      },
-      {
-        name: 'Locksmith',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Beautician',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-    ],
-  },
-  {
-    name: 'Furniture Assembly',
-    subcategories: [
-      {
-        name: 'Plumber',
-      },
-      {
-        name: 'Electrician',
-      },
-      {
-        name: 'Carpenter',
-      },
-      {
-        name: 'Maid',
-      },
-      {
-        name: 'Cook',
-      },
-      {
-        name: 'Janitor',
-      },
-      {
-        name: 'Locksmith',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Beautician',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-    ],
-  },
-  {
-    name: 'Yardwork and Removal',
-    subcategories: [
-      {
-        name: 'Plumber',
-      },
-      {
-        name: 'Electrician',
-      },
-      {
-        name: 'Carpenter',
-      },
-      {
-        name: 'Maid',
-      },
-      {
-        name: 'Cook',
-      },
-      {
-        name: 'Janitor',
-      },
-      {
-        name: 'Locksmith',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Beautician',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
-      },
-      {
-        name: 'Tutor',
+        name: 'Other',
       },
     ],
   },
