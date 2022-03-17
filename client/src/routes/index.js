@@ -9,6 +9,9 @@ const PostJob = lazy(() => import('../screens/PostJob'));
 const Job = lazy(() => import('../screens/Job'));
 const Jobs = lazy(() => import('../screens/Jobs'));
 const Chats = lazy(() => import('../screens/Chats'));
+const PrivacyPolicy = lazy(() => import('../screens/PrivacyPolicy'));
+const TermsOfUse = lazy(() => import('../screens/TermsOfUse'));
+const Disclaimer = lazy(() => import('../screens/Disclaimer'));
 
 const Router = () => {
   return (
@@ -26,6 +29,9 @@ const Router = () => {
           path="/chats"
           element={<ProtectedRoute component={<Chats />} />}
         />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/terms-of-use" element={<TermsOfUse />} />
+        <Route path="/disclaimer" element={<Disclaimer />} />
       </Routes>
     </Suspense>
   );

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XIcon } from '@heroicons/react/outline';
 import { useFormik } from 'formik';
-// import { Link } from 'react-router-dom';s
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
 // import FacebookIcon from '../../assets/icons/FacebookIcon';
 // import GoogleIcon from '../../assets/icons/GoogleIcon';
@@ -15,6 +15,7 @@ const initialValues = {
   name: '',
   password: '',
   confirmPassword: '',
+  agreeTerms: false,
 };
 
 const validationSchema = yup.object().shape({
@@ -28,6 +29,9 @@ const validationSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
+  agreeTerms: yup
+    .boolean()
+    .oneOf([true], 'You must agree to the terms and conditions'),
 });
 
 const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
@@ -172,6 +176,33 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
                       * {formik.errors.confirmPassword}
                     </div>
                   )}
+              </div>
+
+              <div>
+                <input
+                  type="checkbox"
+                  id="agreeTerms"
+                  className="rounded text-primary-500 focus:ring-primary-500"
+                  {...formik.getFieldProps('agreeTerms')}
+                />
+                <label
+                  htmlFor="agreeTerms"
+                  className="ml-2 text-sm text-gray-700"
+                >
+                  I accept{' '}
+                  <a href="/privacy-policy" className="text-blue-500">
+                    Privacy Policy
+                  </a>{' '}
+                  and the{' '}
+                  <a href="/terms-of-use" className="text-blue-500">
+                    Terms of Use
+                  </a>
+                </label>
+                {formik.touched.agreeTerms && formik.errors.agreeTerms && (
+                  <div className="mt-1 text-xs text-red-600">
+                    * {formik.errors.agreeTerms}
+                  </div>
+                )}
               </div>
 
               <button
