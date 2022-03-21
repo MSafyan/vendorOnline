@@ -15,6 +15,7 @@ const initialValues = {
   name: '',
   password: '',
   confirmPassword: '',
+  is18Plus: false,
   agreeTerms: false,
 };
 
@@ -29,6 +30,7 @@ const validationSchema = yup.object().shape({
     .string()
     .oneOf([yup.ref('password'), null], 'Passwords must match')
     .required('Confirm Password is required'),
+  is18Plus: yup.boolean().required('You must be 18 or older'),
   agreeTerms: yup
     .boolean()
     .oneOf([true], 'You must agree to the terms and conditions'),
@@ -176,6 +178,26 @@ const SignupModal = ({ isOpen, setIsOpen, openLogin }) => {
                       * {formik.errors.confirmPassword}
                     </div>
                   )}
+              </div>
+
+              <div>
+                <input
+                  type="checkbox"
+                  id="is18Plus"
+                  className="rounded text-primary-500 focus:ring-primary-500"
+                  {...formik.getFieldProps('is18Plus')}
+                />
+                <label
+                  htmlFor="is18Plus"
+                  className="ml-2 text-sm text-gray-700"
+                >
+                  Are you 18+?
+                </label>
+                {formik.touched.is18Plus && formik.errors.is18Plus && (
+                  <div className="mt-1 text-xs text-red-600">
+                    * {formik.errors.is18Plus}
+                  </div>
+                )}
               </div>
 
               <div>

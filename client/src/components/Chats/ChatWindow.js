@@ -7,6 +7,7 @@ import { ChatAPI } from '../../api';
 import useQueryParams from '../../hooks/useQueryParams';
 import ChatWindowTopBarSkeleton from './ChatWindowTopBarSkeleton';
 import ChatsResponsive from './ChatsResponsive';
+import ChatMenu from './ChatMenu';
 
 const ChatWindow = () => {
   const { user } = useLoggedIn();
@@ -42,7 +43,11 @@ const ChatWindow = () => {
           )}
         </div>
 
-        <ChatsResponsive />
+        <div className="flex items-center gap-2">
+          <ChatsResponsive />
+
+          {chat?._id && <ChatMenu activeChat={chat} />}
+        </div>
       </div>
       {chatId && (
         <>

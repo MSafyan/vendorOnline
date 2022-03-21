@@ -20,6 +20,12 @@ class UserApi extends BaseRoutes {
 
     return res;
   };
+
+  reportUser = async (data) => {
+    const res = await this._post('/report', data);
+
+    return res;
+  };
 }
 
 export default new UserApi();

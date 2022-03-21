@@ -119,7 +119,7 @@ class JobController {
       const job = await Job.create(req.body);
 
       return res.status(201).json({
-        message: 'Job created!',
+        message: 'GIG created!',
         data: job.toJSON(),
       });
     } catch (error) {
@@ -156,7 +156,7 @@ class JobController {
       } else if (jobUpdate.status === Status.Assigned) {
         if (oldJob.status === Status.Assigned) {
           return res.status(400).json({
-            message: 'Job is already assigned',
+            message: 'GIG is already assigned',
           });
         }
 
@@ -164,22 +164,22 @@ class JobController {
       } else if (jobUpdate.status === Status.Completed) {
         if (oldJob.status === Status.Completed) {
           return res.status(400).json({
-            message: 'Job is already completed',
+            message: 'GIG is already completed',
           });
         }
         if (oldJob.status !== Status.Assigned) {
           return res.status(400).json({
-            message: 'Job is not assigned',
+            message: 'GIG is not assigned',
           });
         }
         if (oldJob.status === Status.Canceled) {
           return res.status(400).json({
-            message: 'Job is already canceled',
+            message: 'GIG is already canceled',
           });
         }
         if (oldJob.status === Status.Deleted) {
           return res.status(400).json({
-            message: 'Job is already deleted',
+            message: 'GIG is already deleted',
           });
         }
 
@@ -187,17 +187,17 @@ class JobController {
       } else if (jobUpdate.status === Status.Canceled) {
         if (oldJob.status === Status.Canceled) {
           return res.status(400).json({
-            message: 'Job is already canceled',
+            message: 'GIG is already canceled',
           });
         }
         if (oldJob.status !== Status.Assigned) {
           return res.status(400).json({
-            message: 'Job is not assigned',
+            message: 'GIG is not assigned',
           });
         }
         if (oldJob.status === Status.Completed) {
           return res.status(400).json({
-            message: 'Job is already completed',
+            message: 'GIG is already completed',
           });
         }
 
@@ -206,7 +206,7 @@ class JobController {
       } else if (jobUpdate.status === Status.Deleted) {
         if (oldJob.status === Status.Deleted) {
           return res.status(400).json({
-            message: 'Job is already deleted',
+            message: 'GIG is already deleted',
           });
         }
 
@@ -222,7 +222,7 @@ class JobController {
         .populate('reviews');
 
       return res.status(200).json({
-        message: 'Job updated!',
+        message: 'GIG updated!',
         data: job.toJSON(),
       });
     } catch (error) {
@@ -246,7 +246,7 @@ class JobController {
       });
 
       return res.status(200).json({
-        message: 'Job deleted!',
+        message: 'GIG deleted!',
         data: job.toJSON(),
       });
     } catch (error) {
@@ -265,7 +265,7 @@ class JobController {
 
       if (!job) {
         return res.status(404).json({
-          message: 'Job not found',
+          message: 'GIG not found',
         });
       }
 

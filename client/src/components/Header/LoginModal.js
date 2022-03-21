@@ -130,7 +130,7 @@ const LoginModal = ({ isOpen, setIsOpen, openSignUp }) => {
             </form>
 
             <div className="text-center text-sm">
-              <Link to="/">Forget Password?</Link>
+              <Link to="/">Forgot Password?</Link>
             </div>
 
             <div className="relative flex h-px w-full justify-center bg-gray-400">

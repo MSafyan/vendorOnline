@@ -7,7 +7,7 @@ const JobsList = ({ jobs, isLoading }) => {
   return (
     <div className="py-6 sm:px-4">
       <div className="flex gap-3 px-4 text-center">
-        <h1 className="text-xl font-medium md:text-2xl">Available Jobs</h1>
+        <h1 className="text-xl font-medium md:text-2xl">Available GIGs</h1>
         {isLoading ? (
           <div className="flex items-center justify-center px-2 text-green-500">
             <LoaderIcon />

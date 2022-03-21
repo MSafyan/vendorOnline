@@ -67,7 +67,7 @@ class ChatValidations {
           .test('ObjectId', 'Invalid id', (value) => {
             return ObjectId.isValid(value);
           })
-          .required('Job is required'),
+          .required('GIG is required'),
         receiverId: yup.string().test('ObjectId', 'Invalid id', (value) => {
           return ObjectId.isValid(value) || !value;
         }),

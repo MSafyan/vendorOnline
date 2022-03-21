@@ -13,6 +13,14 @@ class UserValidations {
       }),
     });
   }
+
+  static reportUser() {
+    return yup.object().shape({
+      body: yup.object().shape({
+        reportedTo: yup.string().required(),
+      }),
+    });
+  }
 }
 
 module.exports = UserValidations;

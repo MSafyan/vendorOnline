@@ -50,7 +50,7 @@ const ResponsiveMenu = ({ setIsLoginModalOpen, setIsSignupModalOpen }) => {
                   : 'border-transparent'
               }`}
               >
-                Post Jobs
+                Post GIGs
               </Link>
             </Menu.Item>
             <Menu.Item>
@@ -64,7 +64,7 @@ const ResponsiveMenu = ({ setIsLoginModalOpen, setIsSignupModalOpen }) => {
                   : 'border-transparent'
               }`}
               >
-                Find Jobs
+                Find GIGs
               </Link>
             </Menu.Item>
           </div>

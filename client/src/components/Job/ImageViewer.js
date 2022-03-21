@@ -9,7 +9,7 @@ const ImageViewer = ({ images }) => {
         {images?.length > 0 ? (
           <img
             src={currentImage}
-            alt="job"
+            alt="GIG"
             className="h-full w-full object-cover"
           />
         ) : (

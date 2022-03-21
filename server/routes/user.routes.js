@@ -12,5 +12,6 @@ router.put(
   [requireUser(), validateRequest(UserValidations.updateProfile())],
   UserController.updateProfile
 );
+router.post('/report', requireUser(), UserController.reportUser);
 
 module.exports = router;

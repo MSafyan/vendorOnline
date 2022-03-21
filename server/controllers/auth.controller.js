@@ -49,7 +49,7 @@ class AuthController {
   }
 
   static async register(req, res) {
-    const { name, email, password } = req.body;
+    const { name, email, password, is18Plus } = req.body;
 
     try {
       const user = await User.findOne({ email });
@@ -64,6 +64,7 @@ class AuthController {
         name,
         email,
         password,
+        is18Plus,
       });
 
       const savedUser = await newUser.save();

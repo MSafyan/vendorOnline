@@ -27,6 +27,7 @@ class AuthValidations {
           .string()
           .required('Confirm password is required')
           .oneOf([yup.ref('password'), null], 'Passwords must match'),
+        is18Plus: yup.boolean().required('You must be 18 or older'),
       }),
     });
   }

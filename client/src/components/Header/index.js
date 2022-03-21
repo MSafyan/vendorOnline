@@ -44,7 +44,7 @@ const Header = () => {
                   : 'border-transparent'
               }`}
               >
-                Post Jobs
+                Post GIGs
               </Link>
             </li>
             <li>
@@ -58,7 +58,7 @@ const Header = () => {
                   : 'border-transparent'
               }`}
               >
-                Find Jobs
+                Find GIGs
               </Link>
             </li>
           </ul>
@@ -109,7 +109,7 @@ const Header = () => {
         </div>
 
         <div className="flex items-center justify-end lg:hidden">
-          <ChatButton />
+          {isLoggedIn && <ChatButton />}
           <ResponsiveMenu
             setIsLoginModalOpen={setIsLoginModalOpen}
             setIsSignupModalOpen={setIsSignupModalOpen}

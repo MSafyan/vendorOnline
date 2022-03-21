@@ -47,6 +47,10 @@ const UserSchema = new Schema({
   website: {
     type: String,
   },
+  is18Plus: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // password hashing middleware

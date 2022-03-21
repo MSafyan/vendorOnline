@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import FacebookIcon from '../../assets/icons/FacebookIcon';
+import InstagramIcon from '../../assets/icons/InstagramIcon';
 import LinkedInIcon from '../../assets/icons/LinkedInIcon';
 import TwitterIcon from '../../assets/icons/TwitterIcon';
 
@@ -17,7 +17,7 @@ const Footer = () => {
           <h6 className="text-base font-medium md:text-lg">Follow Us</h6>
           <div className="flex justify-center gap-4 text-gray-500 sm:justify-start">
             <button className="transform hover:text-primary-600">
-              <FacebookIcon className="h-4 w-4 " />
+              <InstagramIcon className="h-6 w-6 " />
             </button>
             <button className="transform hover:text-primary-600">
               <TwitterIcon className="h-5 w-5" />
@@ -37,12 +37,12 @@ const Footer = () => {
               </li>
               <li>
                 <Link to="/jobs" className="mt-1 pb-0.5 transition">
-                  Find Jobs
+                  Find GIGs
                 </Link>
               </li>
               <li>
                 <Link to="/post-job" className="mt-1 pb-0.5 transition">
-                  Post Jobs
+                  Post GIGs
                 </Link>
               </li>
             </ul>
