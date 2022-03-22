@@ -9,6 +9,7 @@ const apiRoutes = require('./routes');
 const deserializeUser = require('./middlewares/deserializeUser');
 const setEnv = require('./utils/setEnv');
 const connectDB = require('./utils/connectDB');
+const path = require('path');
 
 setEnv();
 
@@ -42,20 +43,20 @@ app.use(fileUpload());
 app.use(cookieParser());
 app.use(deserializeUser);
 
-app.use('/', (req, res, next) => {
-  console.log('req: ', req.url);
+// app.use('/', (req, res, next) => {
+//   console.log('req: ', req.url);
 
-  next();
-});
+//   next();
+// });
 
 app.use(express.static('build'));
 app.use('/public', express.static('public'));
 // API Routes
 app.use('/api/', apiRoutes);
 
-// app.get("*", (req, res) => {
-//   res.sendFile(path.join(__dirname, "./build", "index.html"));
-// });
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './build', 'index.html'));
+});
 
 server.listen(PORT, () => {
   console.log(`Server Is running on ${process.env.BASE_URL}`);
