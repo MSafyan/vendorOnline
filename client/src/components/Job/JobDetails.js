@@ -71,7 +71,7 @@ const JobDetails = ({ job }) => {
           <span className="text-gray-800">{job.location}</span> */}
         </p>
 
-        <p className="mt-3 text-sm leading-4 text-gray-700">
+        <p className="mt-3 break-words text-sm leading-4 text-gray-700">
           {job.description}
         </p>
 
