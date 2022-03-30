@@ -1,6 +1,20 @@
 import { Popover, Transition } from '@headlessui/react';
 import { LocationMarkerIcon } from '@heroicons/react/solid';
 import Map from './Map';
+import Geocode from 'react-geocode';
+
+Geocode.setApiKey(process.env.REACT_APP_API_KEY);
+
+// Get address from latitude & longitude.
+Geocode.fromLatLng('48.8583701', '2.2922926').then(
+  (response) => {
+    const address = response.results[0].formatted_address;
+    console.log(response, address);
+  },
+  (error) => {
+    console.error(error);
+  }
+);
 
 const LocationInput = ({ value, onChange, onBlur, error }) => {
   return (

@@ -59,7 +59,11 @@ app.get('*', (req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`Server Is running on ${process.env.BASE_URL}`);
+  console.log(
+    `Server Is running on ${process.env.BASE_URL} in ${
+      process.env.NODE_ENV || 'development'
+    } environment.`
+  );
 
   connectDB();
 });

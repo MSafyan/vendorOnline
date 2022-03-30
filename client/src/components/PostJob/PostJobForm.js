@@ -1,11 +1,13 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import CategoryDisclosure from './CategoryDisclosure';
-import { CameraIcon } from '@heroicons/react/outline';
+import { CameraIcon, InformationCircleIcon } from '@heroicons/react/outline';
 import { useMutation, useQueryClient } from 'react-query';
 import { JobAPI } from '../../api';
 import LoaderIcon from '../../assets/icons/LoaderIcon';
 import LocationInput from './LocationInput';
+import { Tooltip } from 'react-tippy';
+import 'react-tippy/dist/tippy.css';
 
 const MAX_IMAGES = 4;
 
@@ -148,14 +150,26 @@ const PostJobForm = () => {
           <label htmlFor="budget" className="font-medium">
             Budget
           </label>
-          <input
-            id="companyWebsiteLink"
-            type="number"
-            min={0}
-            placeholder="$0.00"
-            className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
-            {...formik.getFieldProps('budget')}
-          />
+          <div className="relative">
+            <input
+              id="companyWebsiteLink"
+              type="number"
+              min={0}
+              placeholder="$0.00"
+              className="mt-0.5 w-full rounded-md border border-gray-300 px-2 py-1.5 text-sm text-gray-800 transition focus:border-primary-500 focus:ring-1 focus:ring-primary-600"
+              {...formik.getFieldProps('budget')}
+            />
+            <Tooltip
+              title="Any skilled work or job with a budget over $250 should be done by a licensed contractor with verifiable reviews and experience from third parties other than gigwaiting.com"
+              position="top"
+              trigger="mouseenter"
+              arrow
+              // distance={10}
+              className="absolute right-1 top-1/2 -translate-y-1/2 cursor-pointer text-yellow-500"
+            >
+              <InformationCircleIcon className="h-6 w-6" />
+            </Tooltip>
+          </div>
           {formik.touched.budget && formik.errors.budget && (
             <div className="mt-1 text-xs text-red-600">
               * {formik.errors.budget}

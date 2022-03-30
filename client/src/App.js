@@ -31,7 +31,7 @@ function App() {
           </LoginProvider>
         </BrowserRouter>
         <ToastContainer />
-        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </div>
   );
