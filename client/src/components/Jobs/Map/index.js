@@ -35,7 +35,12 @@ const Map = ({ jobs }) => {
         className="h-7 w-7 -translate-x-1/2 -translate-y-1/2 text-yellow-500"
       />
       {jobs?.map((job) => (
-        <JobMarker job={job} lat={job.location.lat} lng={job.location.lng} />
+        <JobMarker
+          key={job._id}
+          job={job}
+          lat={job.location.lat}
+          lng={job.location.lng}
+        />
       ))}
     </GoogleMapReact>
   );

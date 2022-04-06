@@ -25,24 +25,15 @@ const Map = ({ selectedPosition, setSelectedPosition }) => {
     return null;
   }
 
-  // if (selectedPosition) {
-  // Geocode.fromLatLng('48.8583701', '2.2922926').then(
-  //   (response) => {
-  //     const address = response.results[0].formatted_address;
-  //     console.log('address ', address);
-  //   },
-  //   (error) => {
-  //     console.log('error ', error);
-  //     console.error(error);
-  //   }
-  // );
-  // }
-
   return (
     // Important! Always set the container height explicitly
     <GoogleMapReact
       bootstrapURLKeys={{ key: process.env.REACT_APP_API_KEY }}
-      defaultCenter={center}
+      defaultCenter={
+        selectedPosition?.lat && selectedPosition?.lng
+          ? selectedPosition
+          : center
+      }
       defaultZoom={zoom}
       onClick={(pos) => {
         setSelectedPosition({

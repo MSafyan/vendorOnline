@@ -6,7 +6,10 @@ const mongoose = require('mongoose');
  * @property {string} title
  * @property {string} description
  * @property {string} company
- * @property {string} location
+ * @property {object} location
+ *  @property {number} lat
+ *  @property {number} lng
+ *  @property {string} address
  * @property {string} budget
  * @property {string} status
  * @property {ObjectId} createdBy
@@ -47,6 +50,10 @@ const JobSchema = new mongoose.Schema(
       },
       lng: {
         type: Number,
+        required: true,
+      },
+      address: {
+        type: String,
         required: true,
       },
     },
