@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="space-y-2">
           <Link
             to="/"
-            className="text-center text-3xl font-semibold text-primary-500 md:text-4xl"
+            className="text-center font-logo text-4xl text-primary-500 md:text-5xl"
           >
             Gigwaiting
           </Link>

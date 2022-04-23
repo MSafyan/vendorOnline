@@ -68,7 +68,7 @@ const Header = () => {
 
         <Link
           to="/"
-          className="text-left text-2xl font-semibold text-primary-500 sm:text-3xl md:text-4xl lg:text-center"
+          className="text-left font-logo text-4xl text-primary-500 sm:text-4xl md:text-5xl lg:text-center"
         >
           Gigwaiting
         </Link>

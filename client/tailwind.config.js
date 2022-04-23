@@ -21,6 +21,9 @@ module.exports = {
       screens: {
         xs: '480px',
       },
+      fontFamily: {
+        logo: ['Cookie', 'cursive'],
+      },
     },
   },
   plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
