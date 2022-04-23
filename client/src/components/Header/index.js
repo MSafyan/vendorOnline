@@ -16,7 +16,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-40 w-full border-b-2 border-primary-600 bg-white py-3 px-8 shadow-md shadow-primary-300/10 md:px-12 lg:px-20">
-      <div className="grid w-full grid-cols-2 lg:grid-cols-3">
+      <div className="grid w-full grid-cols-3 lg:grid-cols-3">
         <nav className="hidden items-center lg:flex">
           <ul className="flex gap-10 text-sm lg:gap-16">
             <li>
@@ -63,6 +63,9 @@ const Header = () => {
             </li>
           </ul>
         </nav>
+
+        <div className="lg:hidden"></div>
+
         <Link
           to="/"
           className="text-left text-2xl font-semibold text-primary-500 sm:text-3xl md:text-4xl lg:text-center"
