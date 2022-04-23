@@ -14,8 +14,8 @@ const Footer = () => {
           >
             Gigwaiting
           </Link>
-          <h6 className="text-base font-medium md:text-lg">Follow Us</h6>
-          <div className="flex justify-center gap-4 text-gray-500 sm:justify-start">
+          {/* <h6 className="text-base font-medium md:text-lg">Follow Us</h6> */}
+          {/* <div className="flex justify-center gap-4 text-gray-500 sm:justify-start">
             <button className="transform hover:text-primary-600">
               <InstagramIcon className="h-6 w-6 " />
             </button>
@@ -25,7 +25,7 @@ const Footer = () => {
             <button className="transform hover:text-primary-600">
               <LinkedInIcon className="h-4 w-4" />
             </button>
-          </div>
+          </div> */}
         </div>
         <div>
           <nav className="flex justify-center">
