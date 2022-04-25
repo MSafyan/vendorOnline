@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import InstagramIcon from '../../assets/icons/InstagramIcon';
 import LinkedInIcon from '../../assets/icons/LinkedInIcon';
 import TwitterIcon from '../../assets/icons/TwitterIcon';
+import logoGreen from '../../assets/images/logo-green.png';
 
 const Footer = () => {
   return (
@@ -12,7 +13,8 @@ const Footer = () => {
             to="/"
             className="text-center font-logo text-4xl text-primary-500 md:text-5xl"
           >
-            Gigwaiting
+            {/* Gigwaiting */}
+            <img src={logoGreen} alt="Gigwaiting" className="mx-auto w-56" />
           </Link>
           {/* <h6 className="text-base font-medium md:text-lg">Follow Us</h6> */}
           {/* <div className="flex justify-center gap-4 text-gray-500 sm:justify-start">

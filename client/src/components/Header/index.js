@@ -7,6 +7,7 @@ import SignupModal from './SignupModal';
 import useLoggedIn from '../../hooks/useLoggedIn';
 import ChatButton from './ChatButton';
 import ResponsiveMenu from './ResponsiveMenu';
+import logoGreen from '../../assets/images/logo-green.png';
 
 const Header = () => {
   const { isLoggedIn, logout, user } = useLoggedIn();
@@ -70,7 +71,7 @@ const Header = () => {
           to="/"
           className="text-left font-logo text-4xl text-primary-500 sm:text-4xl md:text-5xl lg:text-center"
         >
-          Gigwaiting
+          <img src={logoGreen} alt="Gigwaiting" className="mx-auto w-56" />
         </Link>
         <div className="hidden items-center justify-end text-sm lg:flex">
           {isLoggedIn ? (
