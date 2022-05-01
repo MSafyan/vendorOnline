@@ -15,12 +15,8 @@ class GeocodeController {
       const { lat, lng } = req.params;
 
       const inCache = await Geocode.findOne({
-        latitude: {
-          $regex: new RegExp(lat, 'i'),
-        },
-        longitude: {
-          $regex: new RegExp(lng, 'i'),
-        },
+        latitude: lat,
+        longitude: lng,
       });
 
       if (inCache) {

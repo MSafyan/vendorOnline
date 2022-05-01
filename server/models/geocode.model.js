@@ -28,9 +28,13 @@ const GeocodeSchema = new Schema(
     },
     latitude: {
       type: Number,
+      // save rounded to 7 decimal places
+      get: (v) => Math.round(v * 10000000) / 10000000,
     },
     longitude: {
       type: Number,
+      // save rounded to 7 decimal places
+      get: (v) => Math.round(v * 10000000) / 10000000,
     },
     country: {
       type: String,

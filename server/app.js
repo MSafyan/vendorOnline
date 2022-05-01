@@ -18,22 +18,10 @@ const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 
-// socket
-const io = socketIo(server, {
-  cors: {
-    origin: '*',
-  },
-  pingTimeout: 4000,
-  pingInterval: 12000,
-});
-
-global.io = io;
-require('./sockets/SocketManger')(io);
-
 //Middlwares
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -48,6 +36,18 @@ app.use('/', (req, res, next) => {
 
   next();
 });
+
+// socket
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+  },
+  pingTimeout: 4000,
+  pingInterval: 12000,
+});
+
+global.io = io;
+require('./sockets/SocketManger')(io);
 
 app.use(express.static('build'));
 app.use('/public', express.static('public'));
