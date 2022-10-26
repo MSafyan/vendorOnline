@@ -1,28 +1,30 @@
 const { decode } = require('../utils/jwt.utils');
 
 const deserializeUser = async (req, res, next) => {
-  // get token from cookie
-  const token = req.cookies.token;
+	// get token from cookie
+	const token = req.cookies.token;
+	// console.log(req.cookies);
 
-  if (!token) return next();
+	if (!token) return next();
 
-  const { valid, expired, decoded } = decode(token);
+	const { valid, expired, decoded } = decode(token);
+	console.log(decoded);
 
-  if (!valid) {
-    res.clearCookie('token');
+	if (!valid) {
+		res.clearCookie('token');
 
-    return next();
-  }
+		return next();
+	}
 
-  if (expired) {
-    res.clearCookie('token');
+	if (expired) {
+		res.clearCookie('token');
 
-    return next();
-  }
+		return next();
+	}
 
-  req.user = decoded;
+	req.user = decoded;
 
-  next();
+	next();
 };
 
 module.exports = deserializeUser;

@@ -100,7 +100,7 @@ const PostJobForm = () => {
       <div className="space-y-4 md:col-span-5">
         <div>
           <label htmlFor="title" className="font-medium">
-            GIG Title
+            Shop Title
           </label>
           <input
             id="title"
@@ -247,7 +247,7 @@ const PostJobForm = () => {
           type="submit"
           disabled={isLoading}
         >
-          {isLoading ? <LoaderIcon /> : 'Publish GIG'}
+          {isLoading ? <LoaderIcon /> : 'Publish Shop'}
         </button>
 
         {/* <button className="ml-4 rounded-xl border border-primary-500 py-1 px-8 font-semibold text-primary-500 transition hover:border-primary-600 hover:text-primary-600">

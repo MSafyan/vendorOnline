@@ -16,25 +16,25 @@ dayjs.extend(relativeTime);
 const queryClient = new QueryClient();
 
 function App() {
-  return (
-    <div className="flex min-h-screen flex-col">
-      <QueryClientProvider client={queryClient}>
-        <BrowserRouter>
-          <LoginProvider>
-            <NotificationProvider>
-              <Header />
-              <div className="flex flex-1 flex-col">
-                <Router />
-              </div>
-              <Footer />
-            </NotificationProvider>
-          </LoginProvider>
-        </BrowserRouter>
-        <ToastContainer />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
-    </div>
-  );
+	return (
+		<div className='flex min-h-screen flex-col'>
+			<QueryClientProvider client={queryClient}>
+				<BrowserRouter>
+					<LoginProvider>
+						<NotificationProvider>
+							<Header />
+							<div className='flex flex-1 flex-col'>
+								<Router />
+							</div>
+							<Footer />
+						</NotificationProvider>
+					</LoginProvider>
+				</BrowserRouter>
+				<ToastContainer />
+				<ReactQueryDevtools initialIsOpen={false} />
+			</QueryClientProvider>
+		</div>
+	);
 }
 
 export default App;

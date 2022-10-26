@@ -5,11 +5,12 @@ const categorySeeder = require('./categorySeeder');
 setEnv();
 
 const seeder = async () => {
-  connectDB();
+	connectDB();
+	console.log('seeding');
 
-  await categorySeeder();
+	await categorySeeder();
 
-  process.exit();
+	process.exit();
 };
 
 seeder();
